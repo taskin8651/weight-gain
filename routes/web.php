@@ -1,5 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Frontend\AppointmentController;
+
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -88,3 +93,41 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
     }
 });
 
+
+
+
+Route::get('/', [FrontendController::class, 'home'])
+    ->name('home');
+
+    
+Route::get('/programs', [FrontendController::class, 'programs'])->name('programs.page');
+Route::get('/about', [FrontendController::class, 'about'])->name('about.page');
+Route::get('/services', [FrontendController::class, 'services'])->name('services.page');
+Route::get('/contact', [FrontendController::class, 'contact'])->name('contact.page');
+
+Route::post('/contact', [FrontendController::class, 'storeContact'])
+    ->name('contact.store');
+
+Route::get('/appointment', [AppointmentController::class,'create'])
+    ->name('appointment.page');
+
+Route::post('/appointment', [AppointmentController::class,'store'])
+    ->name('appointment.store');
+
+/* Optional: Program Detail Page */
+Route::get('/program/{id}', [FrontendController::class, 'programDetail'])
+    ->name('program.detail');
+
+    Route::get('/diet-plans', [FrontendController::class,'diet'])
+    ->name('diet.page');
+
+Route::get('/diet-plans/{id}', [FrontendController::class,'dietDetail'])
+    ->name('diet.detail');
+
+    Route::get('/transformations',
+    [FrontendController::class,'transformations'])
+    ->name('transformations.page');
+
+Route::get('/transformations/{id}',
+    [FrontendController::class,'transformationDetail'])
+    ->name('transformations.detail');
