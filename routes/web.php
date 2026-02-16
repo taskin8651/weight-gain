@@ -51,9 +51,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
      Route::resource('services',
         App\Http\Controllers\Admin\ServiceController::class);
 
-         Route::resource('settings',
-        App\Http\Controllers\Admin\SettingController::class);
 
+Route::get('settings', [App\Http\Controllers\Admin\SettingController::class,'index'])
+        ->name('settings.index');
+
+    Route::post('settings', [App\Http\Controllers\Admin\SettingController::class,'update'])
+        ->name('settings.update');
           Route::resource('testimonials',
         App\Http\Controllers\Admin\TestimonialController::class);
 
@@ -62,9 +65,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
         Route::resource('abouts',
     App\Http\Controllers\Admin\AboutController::class);
-    
+
 Route::resource('brands',
     App\Http\Controllers\Admin\BrandController::class);
+
+     Route::resource('hero-sections',
+        App\Http\Controllers\Admin\HeroSectionController::class);
+
+        Route::resource('contacts',
+    App\Http\Controllers\Admin\ContactController::class)
+    ->only(['index','show','destroy']);
 
 
 });

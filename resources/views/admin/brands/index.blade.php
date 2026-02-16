@@ -1,41 +1,90 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <h2>Brands</h2>
+<div class="p-6">
 
-    <a href="{{ route('brands.create') }}" class="btn btn-primary mb-3">
-        Add Brand
-    </a>
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-slate-800">
+            Brands
+        </h2>
 
-    <table class="table table-bordered">
-        <tr>
-            <th>Name</th>
-            <th>Logo</th>
-            <th>Action</th>
-        </tr>
+        <a href="{{ route('admin.brands.create') }}"
+           class="px-4 py-2 bg-indigo-600 text-white rounded-lg
+                  hover:bg-indigo-700 transition shadow">
+            + Add Brand
+        </a>
+    </div>
 
-        @foreach($brands as $brand)
-        <tr>
-            <td>{{ $brand->name }}</td>
-            <td>
-                <img src="{{ asset('storage/'.$brand->logo) }}" width="80">
-            </td>
-            <td>
-                <a href="{{ route('brands.edit',$brand->id) }}"
-                   class="btn btn-warning btn-sm">Edit</a>
+    @if(session('success'))
+        <div class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
+            {{ session('success') }}
+        </div>
+    @endif
 
-                <form action="{{ route('brands.destroy',$brand->id) }}"
-                      method="POST" style="display:inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+        <table class="min-w-full divide-y divide-slate-200">
 
-    {{ $brands->links() }}
+            <thead class="bg-slate-50">
+                <tr>
+                    <th class="px-6 py-3 text-xs font-semibold text-slate-600 uppercase text-left">
+                        Name
+                    </th>
+                    <th class="px-6 py-3 text-xs font-semibold text-slate-600 uppercase text-left">
+                        Logo
+                    </th>
+                    <th class="px-6 py-3 text-xs font-semibold text-slate-600 uppercase text-center">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-slate-200 bg-white">
+                @foreach($brands as $brand)
+                <tr class="hover:bg-slate-50 transition">
+
+                    <td class="px-6 py-4 text-sm text-slate-700">
+                        {{ $brand->name }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        @if($brand->logo)
+                            <img src="{{ asset('storage/'.$brand->logo) }}"
+                                 class="w-24 h-16 object-contain bg-slate-50 p-2 rounded-lg shadow">
+                        @endif
+                    </td>
+
+                    <td class="px-6 py-4 text-center space-x-2">
+
+                        <a href="{{ route('admin.brands.edit',$brand->id) }}"
+                           class="px-3 py-1 bg-yellow-500 text-white text-xs rounded-lg
+                                  hover:bg-yellow-600 transition">
+                            Edit
+                        </a>
+
+                        <form action="{{ route('admin.brands.destroy',$brand->id) }}"
+                              method="POST"
+                              class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                                class="px-3 py-1 bg-red-600 text-white text-xs rounded-lg
+                                       hover:bg-red-700 transition">
+                                Delete
+                            </button>
+                        </form>
+
+                    </td>
+
+                </tr>
+                @endforeach
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="mt-4">
+        {{ $brands->links() }}
+    </div>
+
 </div>
 @endsection

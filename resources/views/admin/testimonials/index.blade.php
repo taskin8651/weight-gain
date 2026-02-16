@@ -1,50 +1,104 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <h2>Testimonials</h2>
+<div class="p-6">
 
-    <a href="{{ route('testimonials.create') }}"
-       class="btn btn-primary mb-3">Add Testimonial</a>
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-slate-800">
+            Testimonials
+        </h2>
+
+        <a href="{{ route('admin.testimonials.create') }}"
+           class="px-4 py-2 bg-indigo-600 text-white rounded-lg
+                  hover:bg-indigo-700 transition shadow">
+            + Add Testimonial
+        </a>
+    </div>
 
     @if(session('success'))
-        <div class="alert alert-success">
+        <div class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
             {{ session('success') }}
         </div>
     @endif
 
-    <table class="table table-bordered">
-        <tr>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Rating</th>
-            <th>Action</th>
-        </tr>
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+        <table class="min-w-full divide-y divide-slate-200">
 
-        @foreach($testimonials as $item)
-        <tr>
-            <td>{{ $item->name }}</td>
-            <td>
-                @if($item->image)
-                    <img src="{{ asset('storage/'.$item->image) }}" width="60">
-                @endif
-            </td>
-            <td>{{ $item->rating }} ⭐</td>
-            <td>
-                <a href="{{ route('testimonials.edit',$item->id) }}"
-                   class="btn btn-warning btn-sm">Edit</a>
+            <thead class="bg-slate-50">
+                <tr>
+                    <th class="px-6 py-3 text-xs font-semibold text-slate-600 uppercase text-left">
+                        User
+                    </th>
+                    <th class="px-6 py-3 text-xs font-semibold text-slate-600 uppercase text-left">
+                        Rating
+                    </th>
+                    <th class="px-6 py-3 text-xs font-semibold text-slate-600 uppercase text-center">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
 
-                <form action="{{ route('testimonials.destroy',$item->id) }}"
-                      method="POST" style="display:inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
+            <tbody class="divide-y divide-slate-200 bg-white">
+                @foreach($testimonials as $testimonial)
+                <tr class="hover:bg-slate-50 transition">
 
-    {{ $testimonials->links() }}
+                    <td class="px-6 py-4 flex items-center gap-3">
+                        @if($testimonial->image)
+                            <img src="{{ asset('storage/'.$testimonial->image) }}"
+                                 class="w-10 h-10 rounded-full object-cover">
+                        @endif
+                        <div>
+                            <div class="text-sm font-semibold text-slate-700">
+                                {{ $testimonial->name }}
+                            </div>
+                            <div class="text-xs text-slate-500">
+                                {{ $testimonial->designation }}
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex gap-1">
+                            @for($i=1;$i<=5;$i++)
+                                <span class="text-lg {{ $i <= $testimonial->rating ? 'text-yellow-400' : 'text-gray-300' }}">
+                                    ★
+                                </span>
+                            @endfor
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 text-center space-x-2">
+
+                        <a href="{{ route('admin.testimonials.edit',$testimonial->id) }}"
+                           class="px-3 py-1 bg-yellow-500 text-white text-xs rounded-lg
+                                  hover:bg-yellow-600 transition">
+                            Edit
+                        </a>
+
+                        <form action="{{ route('admin.testimonials.destroy',$testimonial->id) }}"
+                              method="POST"
+                              class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                                class="px-3 py-1 bg-red-600 text-white text-xs rounded-lg
+                                       hover:bg-red-700 transition">
+                                Delete
+                            </button>
+                        </form>
+
+                    </td>
+
+                </tr>
+                @endforeach
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="mt-4">
+        {{ $testimonials->links() }}
+    </div>
+
 </div>
 @endsection

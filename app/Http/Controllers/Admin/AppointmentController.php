@@ -59,4 +59,14 @@ class AppointmentController extends Controller
     return back()->with('success','Appointment Requested');
 }
 
+public function update(Request $request, Appointment $appointment)
+{
+    $appointment->update([
+        'status' => $request->status
+    ]);
+
+    return back()->with('success','Status Updated Successfully');
+}
+
+
 }

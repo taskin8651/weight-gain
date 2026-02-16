@@ -8,73 +8,35 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    public function index()
-    {
-        $settings = Setting::latest()->paginate(10);
-        return view('admin.settings.index', compact('settings'));
+   public function index()
+{
+    $setting = Setting::first();
+
+    if (!$setting) {
+        $setting = Setting::create([]);
     }
 
-    public function create()
-    {
-        return view('admin.settings.create');
+    return view('admin.settings.index', compact('setting'));
+}
+
+
+public function update(Request $request)
+{
+    $setting = Setting::first();
+
+    $data = $request->all();
+
+    if ($request->hasFile('logo')) {
+        $data['logo'] = $request->file('logo')->store('settings','public');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'site_name' => 'nullable|string',
-            'logo' => 'nullable|image',
-            'favicon' => 'nullable|image',
-        ]);
-
-        $data = $request->all();
-
-        if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('settings','public');
-        }
-
-        if ($request->hasFile('favicon')) {
-            $data['favicon'] = $request->file('favicon')->store('settings','public');
-        }
-
-        Setting::create($data);
-
-        return redirect()->route('settings.index')
-            ->with('success','Setting Created Successfully');
+    if ($request->hasFile('favicon')) {
+        $data['favicon'] = $request->file('favicon')->store('settings','public');
     }
 
-    public function edit(Setting $setting)
-    {
-        return view('admin.settings.edit', compact('setting'));
-    }
+    $setting->update($data);
 
-    public function update(Request $request, Setting $setting)
-    {
-        $request->validate([
-            'site_name' => 'nullable|string',
-            'logo' => 'nullable|image',
-            'favicon' => 'nullable|image',
-        ]);
+    return back()->with('success','Settings Updated Successfully');
+}
 
-        $data = $request->all();
-
-        if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('settings','public');
-        }
-
-        if ($request->hasFile('favicon')) {
-            $data['favicon'] = $request->file('favicon')->store('settings','public');
-        }
-
-        $setting->update($data);
-
-        return redirect()->route('settings.index')
-            ->with('success','Setting Updated Successfully');
-    }
-
-    public function destroy(Setting $setting)
-    {
-        $setting->delete();
-        return back()->with('success','Setting Deleted Successfully');
-    }
 }

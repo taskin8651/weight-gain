@@ -1,36 +1,80 @@
 @csrf
 
-<div class="mb-3">
-    <label>Title</label>
-    <input type="text" name="title" class="form-control"
-        value="{{ old('title', $diet_plan->title ?? '') }}">
-</div>
+<div class="space-y-6">
 
-<div class="mb-3">
-    <label>Description</label>
-    <textarea name="description" class="form-control">
-        {{ old('description', $diet_plan->description ?? '') }}
-    </textarea>
-</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-<div class="mb-3">
-    <label>Goal</label>
-    <select name="goal" class="form-control">
-        <option value="weight_loss">Weight Loss</option>
-        <option value="weight_gain">Weight Gain</option>
-    </select>
-</div>
+        {{-- Title --}}
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">
+                Title
+            </label>
+            <input type="text" name="title"
+                value="{{ old('title', $diet_plan->title ?? '') }}"
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg
+                       focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                       outline-none transition">
+        </div>
 
-<div class="mb-3">
-    <label>Program</label>
-    <select name="program_id" class="form-control">
-        @foreach($programs as $program)
-            <option value="{{ $program->id }}"
-                {{ (isset($diet_plan) && $diet_plan->program_id == $program->id) ? 'selected' : '' }}>
-                {{ $program->title }}
-            </option>
-        @endforeach
-    </select>
-</div>
+        {{-- Goal --}}
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">
+                Goal
+            </label>
+            <select name="goal"
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg
+                       focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                       outline-none transition">
+                <option value="weight_loss"
+                    {{ old('goal', $diet_plan->goal ?? '') == 'weight_loss' ? 'selected' : '' }}>
+                    Weight Loss
+                </option>
+                <option value="weight_gain"
+                    {{ old('goal', $diet_plan->goal ?? '') == 'weight_gain' ? 'selected' : '' }}>
+                    Weight Gain
+                </option>
+            </select>
+        </div>
 
-<button class="btn btn-success">Save</button>
+        {{-- Program --}}
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1">
+                Program
+            </label>
+            <select name="program_id"
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg
+                       focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                       outline-none transition">
+                <option value="">Select Program</option>
+                @foreach($programs as $program)
+                    <option value="{{ $program->id }}"
+                        {{ old('program_id', $diet_plan->program_id ?? '') == $program->id ? 'selected' : '' }}>
+                        {{ $program->title }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+    </div>
+
+    {{-- Full Width Description --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">
+            Description
+        </label>
+        <textarea name="description" rows="5"
+            class="w-full px-4 py-2 border border-slate-300 rounded-lg
+                   focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                   outline-none transition">{{ old('description', $diet_plan->description ?? '') }}</textarea>
+    </div>
+
+    {{-- Submit --}}
+    <div>
+        <button type="submit"
+            class="px-8 py-2 bg-indigo-600 text-white rounded-lg
+                   hover:bg-indigo-700 transition shadow-md">
+            Save Diet Plan
+        </button>
+    </div>
+
+</div>

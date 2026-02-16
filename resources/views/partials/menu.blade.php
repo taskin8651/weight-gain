@@ -1,114 +1,161 @@
 <aside
-    class="w-64 bg-slate-900 text-slate-100 min-h-screen hidden lg:flex flex-col
-           transition-all duration-300 ease-in-out">
+    x-data="{ websiteOpen:
+        {{ request()->is('admin/hero-sections*')
+        || request()->is('admin/abouts*')
+        || request()->is('admin/services*')
+        || request()->is('admin/programs*')
+        || request()->is('admin/diet-plans*')
+        || request()->is('admin/transformations*')
+        || request()->is('admin/testimonials*')
+        || request()->is('admin/brands*') ? 'true' : 'false' }},
+
+         bookingOpen:
+            {{ request()->is('admin/appointments*')
+            || request()->is('admin/contacts*') ? 'true' : 'false' }},
+
+        settingOpen:
+            {{ request()->is('admin/settings*') ? 'true' : 'false' }}
+    }"
+    class="w-64 bg-slate-900 text-slate-100 min-h-screen hidden lg:flex flex-col">
 
     {{-- BRAND --}}
-    <div class="px-6 py-4 text-xl font-semibold border-b border-slate-700
-                tracking-wide">
+    <div class="px-6 py-4 text-xl font-semibold border-b border-slate-700">
         {{ trans('panel.site_title') }}
     </div>
 
-    {{-- NAV --}}
     <nav class="flex-1 px-3 py-4 space-y-1 text-sm">
 
         {{-- DASHBOARD --}}
         <a href="{{ route('admin.home') }}"
-           class="group flex items-center gap-3 px-3 py-2 rounded transition
-           {{ request()->routeIs('admin.home')
-                ? 'bg-slate-800 text-white'
-                : 'hover:bg-slate-800 hover:pl-4' }}">
-            <i class="fas fa-tachometer-alt text-slate-400 group-hover:text-white transition"></i>
-            {{ trans('global.dashboard') }}
+           class="flex items-center gap-3 px-3 py-2 rounded transition
+           {{ request()->routeIs('admin.home') ? 'bg-slate-800' : 'hover:bg-slate-800' }}">
+            <i class="fas fa-tachometer-alt"></i>
+            Dashboard
         </a>
 
-        {{-- USER MANAGEMENT --}}
-        @can('user_management_access')
-            <div x-data="{ open:
-                {{ request()->is('admin/permissions*')
-                || request()->is('admin/roles*')
-                || request()->is('admin/users*')
-                || request()->is('admin/audit-logs*') ? 'true' : 'false' }}
-            }">
+        {{-- WEBSITE CONTENT DROPDOWN --}}
+        <div class="mt-4">
 
-                <button @click="open = !open"
-                        class="group w-full flex items-center justify-between px-3 py-2 rounded
-                               hover:bg-slate-800 transition">
-                    <span class="flex items-center gap-3">
-                        <i class="fas fa-users text-slate-400 group-hover:text-white transition"></i>
-                        {{ trans('cruds.userManagement.title') }}
-                    </span>
+            <button @click="websiteOpen = !websiteOpen"
+                class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-slate-800 transition">
 
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-300"
-                       :class="open ? 'rotate-180' : ''"></i>
-                </button>
+                <span class="flex items-center gap-3">
+                    <i class="fas fa-globe"></i>
+                    Website Content
+                </span>
 
-                {{-- DROPDOWN --}}
-                <div x-show="open"
-                     x-transition:enter="transition ease-out duration-200"
-                     x-transition:enter-start="opacity-0 -translate-y-2"
-                     x-transition:enter-end="opacity-100 translate-y-0"
-                     x-transition:leave="transition ease-in duration-150"
-                     x-transition:leave-start="opacity-100 translate-y-0"
-                     x-transition:leave-end="opacity-0 -translate-y-2"
-                     class="ml-6 mt-1 space-y-1">
+                <i class="fas fa-chevron-down text-xs transition-transform duration-300"
+                   :class="websiteOpen ? 'rotate-180' : ''"></i>
+            </button>
 
-                    @can('permission_access')
-                        <a href="{{ route('admin.permissions.index') }}"
-                           class="block px-3 py-2 rounded transition
-                           {{ request()->is('admin/permissions*')
-                                ? 'bg-slate-800 text-white'
-                                : 'hover:bg-slate-800 hover:pl-4' }}">
-                            {{ trans('cruds.permission.title') }}
-                        </a>
-                    @endcan
+            <div x-show="websiteOpen"
+                 x-transition
+                 class="mt-1 ml-6 space-y-1">
 
-                    @can('role_access')
-                        <a href="{{ route('admin.roles.index') }}"
-                           class="block px-3 py-2 rounded transition
-                           {{ request()->is('admin/roles*')
-                                ? 'bg-slate-800 text-white'
-                                : 'hover:bg-slate-800 hover:pl-4' }}">
-                            {{ trans('cruds.role.title') }}
-                        </a>
-                    @endcan
-
-                    @can('user_access')
-                        <a href="{{ route('admin.users.index') }}"
-                           class="block px-3 py-2 rounded transition
-                           {{ request()->is('admin/users*')
-                                ? 'bg-slate-800 text-white'
-                                : 'hover:bg-slate-800 hover:pl-4' }}">
-                            {{ trans('cruds.user.title') }}
-                        </a>
-                    @endcan
-
-                    @can('audit_log_access')
-                        <a href="{{ route('admin.audit-logs.index') }}"
-                           class="block px-3 py-2 rounded transition
-                           {{ request()->is('admin/audit-logs*')
-                                ? 'bg-slate-800 text-white'
-                                : 'hover:bg-slate-800 hover:pl-4' }}">
-                            {{ trans('cruds.auditLog.title') }}
-                        </a>
-                    @endcan
-
-                </div>
-            </div>
-        @endcan
-
-        {{-- CHANGE PASSWORD --}}
-        @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
-            @can('profile_password_edit')
-                <a href="{{ route('profile.password.edit') }}"
-                   class="group flex items-center gap-3 px-3 py-2 rounded transition
-                   {{ request()->is('profile/password*')
-                        ? 'bg-slate-800 text-white'
-                        : 'hover:bg-slate-800 hover:pl-4' }}">
-                    <i class="fas fa-key text-slate-400 group-hover:text-white transition"></i>
-                    {{ trans('global.change_password') }}
+                <a href="{{ route('admin.hero-sections.index') }}"
+                   class="block px-3 py-2 rounded hover:bg-slate-800">
+                    Hero Section
                 </a>
-            @endcan
-        @endif
+
+                <a href="{{ route('admin.abouts.index') }}"
+                   class="block px-3 py-2 rounded hover:bg-slate-800">
+                    About
+                </a>
+
+                <a href="{{ route('admin.services.index') }}"
+                   class="block px-3 py-2 rounded hover:bg-slate-800">
+                    Services
+                </a>
+
+                <a href="{{ route('admin.programs.index') }}"
+                   class="block px-3 py-2 rounded hover:bg-slate-800">
+                    Programs
+                </a>
+
+                <a href="{{ route('admin.diet-plans.index') }}"
+                   class="block px-3 py-2 rounded hover:bg-slate-800">
+                    Diet Plans
+                </a>
+
+                <a href="{{ route('admin.transformations.index') }}"
+                   class="block px-3 py-2 rounded hover:bg-slate-800">
+                    Transformations
+                </a>
+
+                <a href="{{ route('admin.testimonials.index') }}"
+                   class="block px-3 py-2 rounded hover:bg-slate-800">
+                    Testimonials
+                </a>
+
+                <a href="{{ route('admin.brands.index') }}"
+                   class="block px-3 py-2 rounded hover:bg-slate-800">
+                    Brands
+                </a>
+
+            </div>
+
+        </div>
+
+       {{-- BOOKINGS --}}
+<div class="mt-4">
+
+    <button @click="bookingOpen = !bookingOpen"
+        class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-slate-800 transition">
+
+        <span class="flex items-center gap-3">
+            <i class="fas fa-calendar-check"></i>
+            Bookings
+        </span>
+
+        <i class="fas fa-chevron-down text-xs transition-transform duration-300"
+           :class="bookingOpen ? 'rotate-180' : ''"></i>
+    </button>
+
+    <div x-show="bookingOpen"
+         x-transition
+         class="mt-1 ml-6 space-y-1">
+
+        <a href="{{ route('admin.appointments.index') }}"
+           class="block px-3 py-2 rounded hover:bg-slate-800">
+            Appointments
+        </a>
+
+        <a href="{{ route('admin.contacts.index') }}"
+           class="block px-3 py-2 rounded hover:bg-slate-800">
+            Contact Messages
+        </a>
+
+    </div>
+
+</div>
+{{-- SETTINGS --}}
+<div class="mt-4">
+
+    <button @click="settingOpen = !settingOpen"
+        class="w-full flex items-center justify-between px-3 py-2 rounded hover:bg-slate-800 transition">
+
+        <span class="flex items-center gap-3">
+            <i class="fas fa-cog"></i>
+            Settings
+        </span>
+
+        <i class="fas fa-chevron-down text-xs transition-transform duration-300"
+           :class="settingOpen ? 'rotate-180' : ''"></i>
+    </button>
+
+    <div x-show="settingOpen"
+         x-transition
+         class="mt-1 ml-6 space-y-1">
+
+        <a href="{{ route('admin.settings.index') }}"
+           class="block px-3 py-2 rounded hover:bg-slate-800">
+            Website Settings
+        </a>
+
+    </div>
+
+</div>
+
 
     </nav>
 
@@ -116,10 +163,9 @@
     <div class="border-t border-slate-700 p-3">
         <a href="#"
            onclick="event.preventDefault(); document.getElementById('logoutform').submit();"
-           class="group flex items-center gap-3 px-3 py-2 rounded transition
-                  hover:bg-red-600 hover:text-white">
-            <i class="fas fa-sign-out-alt transition group-hover:translate-x-1"></i>
-            {{ trans('global.logout') }}
+           class="flex items-center gap-3 px-3 py-2 rounded hover:bg-red-600">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
         </a>
     </div>
 
