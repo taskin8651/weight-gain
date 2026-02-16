@@ -96,4 +96,14 @@ class User extends Authenticatable
     return $this->hasMany(Appointment::class);
 }
 
+public function programs()
+{
+    return $this->belongsToMany(Program::class)
+                ->withPivot('start_date','end_date')
+                ->withTimestamps();
+}
+
+
+
+
 }

@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transformation extends Model
+class HeroSection extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'before_image',
-        'after_image',
-        'result',
+        'title',
+        'subtitle',
+        'description',
+        'button_text',
+        'button_link',
+        'background_image',
     ];
 }

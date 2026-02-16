@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class DietPlan extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'goal',
+        'program_id',
+    ];
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
 }

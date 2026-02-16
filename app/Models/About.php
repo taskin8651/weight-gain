@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transformation extends Model
+class About extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'before_image',
-        'after_image',
-        'result',
+        'title',
+        'description',
+        'image',
     ];
 }

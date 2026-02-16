@@ -28,6 +28,45 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
+    
+    Route::resource('programs', App\Http\Controllers\Admin\ProgramController::class);
+    Route::resource('diet-plans', App\Http\Controllers\Admin\DietPlanController::class);
+    Route::resource('transformations', App\Http\Controllers\Admin\TransformationController::class);
+
+     Route::resource('appointments', App\Http\Controllers\Admin\AppointmentController::class)
+        ->only(['index','destroy']);
+
+    Route::patch('appointments/{appointment}/approve',
+        [App\Http\Controllers\Admin\AppointmentController::class,'approve'])
+        ->name('appointments.approve');
+
+    Route::patch('appointments/{appointment}/reject',
+        [App\Http\Controllers\Admin\AppointmentController::class,'reject'])
+        ->name('appointments.reject');
+
+        Route::post('/appointment-book',
+    [App\Http\Controllers\User\AppointmentController::class,'store'])
+    ->name('user.appointment.store');
+
+     Route::resource('services',
+        App\Http\Controllers\Admin\ServiceController::class);
+
+         Route::resource('settings',
+        App\Http\Controllers\Admin\SettingController::class);
+
+          Route::resource('testimonials',
+        App\Http\Controllers\Admin\TestimonialController::class);
+
+         Route::resource('hero-sections',
+        App\Http\Controllers\Admin\HeroSectionController::class);
+
+        Route::resource('abouts',
+    App\Http\Controllers\Admin\AboutController::class);
+    
+Route::resource('brands',
+    App\Http\Controllers\Admin\BrandController::class);
+
+
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
