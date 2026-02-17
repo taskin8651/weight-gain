@@ -7,46 +7,94 @@
 <section class="py-24 bg-white">
 <div class="max-w-6xl mx-auto px-6">
 
-    <div class="grid md:grid-cols-2 gap-12">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
 
         {{-- Image --}}
         <div>
             <img src="{{ !empty($diet->image)
                 ? asset('storage/'.$diet->image)
                 : 'https://via.placeholder.com/600x500' }}"
-                 class="rounded-2xl shadow-lg w-full">
+                 class="rounded-2xl shadow-xl w-full object-cover">
         </div>
 
         {{-- Content --}}
         <div>
 
-            <h1 class="text-4xl font-bold mb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
                 {{ $diet->title }}
             </h1>
 
-            <span class="px-4 py-1 text-sm rounded-full
-                {{ $diet->type=='weight_loss'
+            {{-- Goal --}}
+            <span class="inline-block px-4 py-1 text-sm rounded-full
+                {{ $diet->goal == 'weight_loss'
                     ? 'bg-emerald-100 text-emerald-600'
                     : 'bg-blue-100 text-blue-600' }}">
-                {{ ucfirst(str_replace('_',' ',$diet->type)) }}
+                {{ ucfirst(str_replace('_',' ',$diet->goal)) }}
             </span>
 
             <p class="mt-6 text-slate-600 leading-relaxed">
                 {{ $diet->description }}
             </p>
 
-            <div class="mt-6 space-y-2 text-sm text-slate-500">
-                <div>Duration: {{ $diet->duration ?? '12 Weeks' }}</div>
-                <div>Calories: {{ $diet->calories ?? '2000 kcal' }}</div>
-                <div class="text-xl font-semibold text-emerald-600">
-                    ₹ {{ $diet->price ?? '4999' }}
-                </div>
-            </div>
+            {{-- Program Info --}}
+           @if($diet->program)
+<div class="mt-8 bg-gradient-to-r from-emerald-50 to-white border border-emerald-100 rounded-2xl p-6 shadow-sm">
 
-            <a href="{{ route('appointment.page') }}"
-               class="mt-8 inline-block bg-emerald-600 text-white px-8 py-3 rounded-lg hover:bg-emerald-700 transition">
-                Get This Plan
-            </a>
+    <h4 class="text-lg font-semibold text-slate-800 mb-5">
+        Program Details
+    </h4>
+
+    <div class="grid grid-cols-2 gap-6">
+
+        {{-- Program Name --}}
+        <div class="bg-white rounded-xl p-4 shadow-sm">
+            <p class="text-xs text-slate-500 mb-1">Program</p>
+            <p class="font-semibold text-slate-800">
+                {{ $diet->program->title }}
+            </p>
+        </div>
+
+        {{-- Duration --}}
+        <div class="bg-white rounded-xl p-4 shadow-sm">
+            <p class="text-xs text-slate-500 mb-1">Duration</p>
+            <p class="font-semibold text-slate-800">
+                {{ $diet->program->duration }}
+            </p>
+        </div>
+
+        {{-- Type --}}
+        <div class="bg-white rounded-xl p-4 shadow-sm col-span-2">
+            <p class="text-xs text-slate-500 mb-1">Program Type</p>
+            <span class="inline-block px-3 py-1 text-xs rounded-full
+                {{ $diet->program->type == 'weight_loss'
+                    ? 'bg-emerald-100 text-emerald-600'
+                    : 'bg-blue-100 text-blue-600' }}">
+                {{ ucfirst(str_replace('_',' ',$diet->program->type)) }}
+            </span>
+        </div>
+
+    </div>
+
+    {{-- Price Section --}}
+    <div class="mt-6 flex items-center justify-between bg-emerald-600 text-white px-6 py-4 rounded-xl">
+
+        <div>
+            <p class="text-xs opacity-80">Program Price</p>
+            <p class="text-2xl font-bold">
+                ₹ {{ $diet->program->price }}
+            </p>
+        </div>
+
+        <a href="{{ route('appointment.page') }}"
+           class="bg-white text-emerald-600 px-5 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-100 transition">
+            Enroll Now
+        </a>
+
+    </div>
+
+</div>
+@endif
+
 
         </div>
 

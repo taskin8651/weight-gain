@@ -429,54 +429,52 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="swiper serviceSwiper">
             <div class="swiper-wrapper">
 
-                @forelse($services as $service)
+              @forelse($services as $service)
 
-                <div class="swiper-slide">
-                    <div class="service-card bg-white rounded-2xl p-8 text-center transition-all duration-500">
+<div class="swiper-slide">
+    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
 
-                        <div class="mb-6">
-                            <img src="{{ !empty($service->image_one)
-                                ? asset('storage/'.$service->image_one)
-                                : 'https://via.placeholder.com/80x80' }}"
-                                 class="mx-auto h-20 w-20 object-cover rounded-full shadow service-icon">
-                        </div>
+        {{-- Full Image --}}
+        <div class="relative h-60 overflow-hidden">
+            <img src="{{ !empty($service->image_one)
+                ? asset('storage/'.$service->image_one)
+                : 'https://via.placeholder.com/600x400' }}"
+                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+        </div>
 
-                        <h3 class="text-lg font-semibold text-slate-800 mb-3">
-                            {{ $service->title ?? 'Personal Coaching' }}
-                        </h3>
+        {{-- Content --}}
+        <div class="p-6 flex flex-col">
 
-                        <p class="text-sm text-slate-600 leading-relaxed">
-                            {{ $service->short_description ?? 'Customized workout and nutrition plans tailored to your goals.' }}
-                        </p>
+            <h3 class="text-xl font-semibold text-slate-800 mb-3">
+                {{ $service->title ?? 'Premium Coaching' }}
+            </h3>
 
-                    </div>
-                </div>
+            <p class="text-sm text-slate-600 mb-4 flex-grow">
+                {{ \Illuminate\Support\Str::limit($service->short_description ?? 'Professional guidance to help you achieve your goals.', 120) }}
+            </p>
 
-                @empty
+            <a href="{{ route('service.detail', $service->id) }}"
+               class="mt-auto inline-block bg-emerald-600 text-white px-5 py-2 rounded-lg text-sm hover:bg-emerald-700 transition">
+                View Details →
+            </a>
 
-                {{-- Dummy Slides --}}
-                @for($i=0;$i<8;$i++)
-                <div class="swiper-slide">
-                    <div class="service-card bg-white rounded-2xl p-8 text-center">
+        </div>
+    </div>
+</div>
 
-                        <div class="mb-6">
-                            <img src="https://via.placeholder.com/80x80"
-                                 class="mx-auto h-20 w-20 rounded-full shadow service-icon">
-                        </div>
+@empty
+{{-- Dummy Card --}}
+<div class="swiper-slide">
+    <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+        <div class="h-60 bg-gray-200"></div>
+        <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">Premium Coaching</h3>
+            <p class="text-sm text-gray-600">Professional fitness service description.</p>
+        </div>
+    </div>
+</div>
+@endforelse
 
-                        <h3 class="text-lg font-semibold mb-3">
-                            Premium Coaching
-                        </h3>
-
-                        <p class="text-sm text-slate-600">
-                            Professional guidance to help you reach your ideal fitness level.
-                        </p>
-
-                    </div>
-                </div>
-                @endfor
-
-                @endforelse
 
             </div>
 

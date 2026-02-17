@@ -9,7 +9,7 @@
 
     <div class="bg-white p-6 rounded-xl shadow">
         <form action="{{ route('admin.diet-plans.store') }}"
-              method="POST">
+              method="POST" enctype="multipart/form-data" class="space-y-6">
             @include('admin.diet_plans._form')
         </form>
     </div>

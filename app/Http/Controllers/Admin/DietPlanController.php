@@ -26,20 +26,27 @@ class DietPlanController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required|string',
-            'goal'        => 'required|in:weight_loss,weight_gain',
-            'program_id'  => 'required|exists:programs,id',
-        ]);
+{
+    $validated = $request->validate([
+        'title'       => 'required|string|max:255',
+        'description' => 'required|string',
+        'goal'        => 'required|in:weight_loss,weight_gain',
+        'program_id'  => 'required|exists:programs,id',
+        'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
 
-        DietPlan::create($validated);
-
-        return redirect()
-            ->route('admin.diet-plans.index')
-            ->with('success', 'Diet Plan Created Successfully');
+    if ($request->hasFile('image')) {
+        $validated['image'] = $request->file('image')
+            ->store('diet_plans', 'public');
     }
+
+    DietPlan::create($validated);
+
+    return redirect()
+        ->route('admin.diet-plans.index')
+        ->with('success', 'Diet Plan Created Successfully');
+}
+
 
     public function edit(DietPlan $diet_plan)
     {
@@ -49,20 +56,33 @@ class DietPlanController extends Controller
     }
 
     public function update(Request $request, DietPlan $diet_plan)
-    {
-        $validated = $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required|string',
-            'goal'        => 'required|in:weight_loss,weight_gain',
-            'program_id'  => 'required|exists:programs,id',
-        ]);
+{
+    $validated = $request->validate([
+        'title'       => 'required|string|max:255',
+        'description' => 'required|string',
+        'goal'        => 'required|in:weight_loss,weight_gain',
+        'program_id'  => 'required|exists:programs,id',
+        'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
 
-        $diet_plan->update($validated);
+    if ($request->hasFile('image')) {
 
-        return redirect()
-            ->route('admin.diet-plans.index')
-            ->with('success', 'Diet Plan Updated Successfully');
+        // Optional: old image delete
+        if ($diet_plan->image && \Storage::disk('public')->exists($diet_plan->image)) {
+            \Storage::disk('public')->delete($diet_plan->image);
+        }
+
+        $validated['image'] = $request->file('image')
+            ->store('diet_plans', 'public');
     }
+
+    $diet_plan->update($validated);
+
+    return redirect()
+        ->route('admin.diet-plans.index')
+        ->with('success', 'Diet Plan Updated Successfully');
+}
+
 
     public function destroy(DietPlan $diet_plan)
     {

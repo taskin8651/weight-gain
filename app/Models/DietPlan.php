@@ -14,6 +14,7 @@ class DietPlan extends Model
         'description',
         'goal',
         'program_id',
+        'image',
     ];
 
     public function program()

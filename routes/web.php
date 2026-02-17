@@ -103,6 +103,9 @@ Route::get('/', [FrontendController::class, 'home'])
 Route::get('/programs', [FrontendController::class, 'programs'])->name('programs.page');
 Route::get('/about', [FrontendController::class, 'about'])->name('about.page');
 Route::get('/services', [FrontendController::class, 'services'])->name('services.page');
+Route::get('/service/{id}', [FrontendController::class, 'serviceDetail'])
+    ->name('service.detail');
+
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact.page');
 
 Route::post('/contact', [FrontendController::class, 'storeContact'])

@@ -90,16 +90,22 @@ class FrontendController extends Controller
         return view('frontend.contact');
     }
 
-    public function diet(Request $request)
+   
+
+public function diet(Request $request)
 {
     $type = $request->type;
 
-    $dietPlans = DietPlan::when($type, function ($query) use ($type) {
-        $query->where('type', $type);
-    })->latest()->get();
+    $dietPlans = DietPlan::with('program')
+        ->when($type, function ($query) use ($type) {
+            $query->where('goal', $type);
+        })
+        ->latest()
+        ->paginate(9);
 
     return view('frontend.diet.index', compact('dietPlans','type'));
 }
+
 
 public function dietDetail($id)
 {
@@ -119,4 +125,18 @@ public function transformationDetail($id)
     $transformation = Transformation::findOrFail($id);
     return view('frontend.transformations.show', compact('transformation'));
 }
+
+public function serviceDetail($id)
+{
+    $service = Service::findOrFail($id);
+
+        $recentServices = Service::where('id','!=',$id)
+                        ->latest()
+                        ->take(3)
+                        ->get();
+
+
+    return view('frontend.service-detail', compact('service','recentServices'));
+}
+
 }

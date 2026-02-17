@@ -9,7 +9,7 @@
 
     <div class="bg-white p-6 rounded-xl shadow">
         <form action="{{ route('admin.diet-plans.update',$diet_plan->id) }}"
-              method="POST">
+              method="POST" enctype="multipart/form-data" class="space-y-6">
             @method('PUT')
             @include('admin.diet_plans._form')
         </form>

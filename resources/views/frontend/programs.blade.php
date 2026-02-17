@@ -61,7 +61,7 @@
                     </div>
 
                     {{-- Button --}}
-                    <a href="{{ route('contact.page') }}"
+                    <a href="{{ route('appointment.page') }}"
                        class="mt-auto bg-emerald-600 text-white text-center py-2 rounded-lg 
                               hover:bg-emerald-700 transition">
                         Join Now
