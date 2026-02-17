@@ -22,6 +22,7 @@ class SettingController extends Controller
 
 public function update(Request $request)
 {
+    // dd($request->all());
     $setting = Setting::first();
 
     $data = $request->all();

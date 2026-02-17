@@ -22,10 +22,14 @@ class TransformationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'before_image' => 'required|image',
-            'after_image' => 'required|image',
-        ]);
+    'name' => 'required|string|max:255',
+    'goal' => 'required|in:weight_loss,weight_gain',
+    'result' => 'required|string|max:255',
+    'description' => 'required|string',
+    'before_image' => 'nullable|image',
+    'after_image' => 'nullable|image',
+]);
+
 
         $data = $request->all();
 
@@ -41,7 +45,7 @@ class TransformationController extends Controller
 
         Transformation::create($data);
 
-        return redirect()->route('transformations.index')
+        return redirect()->route('admin.transformations.index')
             ->with('success','Transformation Added Successfully');
     }
 
@@ -70,7 +74,7 @@ class TransformationController extends Controller
 
         $transformation->update($data);
 
-        return redirect()->route('transformations.index')
+        return redirect()->route('admin.transformations.index')
             ->with('success','Transformation Updated Successfully');
     }
 

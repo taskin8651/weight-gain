@@ -65,7 +65,7 @@
                             Structured training and expert guidance tailored for your goals.
                         </p>
 
-                        <a href="#contact"
+                        <a href="{{ route('appointment.page') }}"
                            class="bg-emerald-600 px-8 py-3 rounded-lg text-white text-lg font-semibold hover:bg-emerald-700 transition shadow-lg">
                             Start Today
                         </a>
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
 
             <div class="mt-8">
-                <a href="#contact"
+                <a href="{{route('about.page') }}"
                    class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition shadow">
                     Start Your Journey
                 </a>
@@ -195,14 +195,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="max-w-7xl mx-auto px-6">
 
-        <div class="text-center mb-14">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
-                Our Programs
-            </h2>
-            <p class="mt-4 text-slate-600">
-                Choose a personalized program designed for your fitness goals.
-            </p>
-        </div>
+       <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-14 gap-6">
+
+    {{-- Left Content --}}
+    <div>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
+            Our Programs
+        </h2>
+
+        <p class="mt-3 text-slate-600">
+            Choose a personalized program designed for your fitness goals.
+        </p>
+    </div>
+
+    {{-- Right Button --}}
+    <div>
+        <a href="{{ route('programs.page') }}"
+           class="inline-flex items-center gap-2 bg-emerald-600 text-white px-5 py-2.5 rounded-lg
+                  hover:bg-emerald-700 transition shadow-md">
+
+            View All
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="h-4 w-4"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7" />
+            </svg>
+
+        </a>
+    </div>
+
+</div>
+
 
         <div class="swiper programSwiper">
             <div class="swiper-wrapper">
@@ -366,14 +395,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="max-w-7xl mx-auto px-6">
 
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
-                Our Services
-            </h2>
-            <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
-                Personalized fitness and nutrition services designed to help you achieve lasting results.
-            </p>
-        </div>
+        <div class="flex items-center justify-between mb-12">
+
+    {{-- Left Content --}}
+    <div class="max-w-xl">
+
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-800">
+            Our Services
+        </h2>
+
+        <p class="mt-2 md:mt-4 text-sm md:text-base text-slate-600">
+            Personalized fitness and nutrition services designed to help you achieve lasting results.
+        </p>
+
+    </div>
+
+    {{-- Right Button --}}
+    <div class="shrink-0">
+        <a href="{{ route('services.page') }}"
+           class="text-sm md:text-base border border-emerald-600 text-emerald-600
+                  px-4 md:px-5 py-2 rounded-lg
+                  hover:bg-emerald-600 hover:text-white
+                  transition duration-300">
+
+            View All →
+
+        </a>
+    </div>
+
+</div>
+
 
         <div class="swiper serviceSwiper">
             <div class="swiper-wrapper">
@@ -404,7 +455,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 @empty
 
                 {{-- Dummy Slides --}}
-                @for($i=0;$i<3;$i++)
+                @for($i=0;$i<8;$i++)
                 <div class="swiper-slide">
                     <div class="service-card bg-white rounded-2xl p-8 text-center">
 
@@ -500,14 +551,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="max-w-7xl mx-auto px-6">
 
-        <div class="text-center mb-14">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
-                Diet Plans
-            </h2>
-            <p class="mt-4 text-slate-600">
-                Balanced and personalized meal plans designed for your body goals.
-            </p>
-        </div>
+      <div class="flex items-center justify-between mb-12">
+
+    {{-- Left Content --}}
+    <div class="max-w-xl">
+
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-800">
+            Diet Plans
+        </h2>
+
+        <p class="mt-2 md:mt-4 text-sm md:text-base text-slate-600">
+            Balanced and personalized meal plans designed for your body goals.
+        </p>
+
+    </div>
+
+    {{-- Right Button --}}
+    <div class="shrink-0">
+        <a href="{{ route('diet.page') }}"
+           class="text-sm md:text-base border border-emerald-600 text-emerald-600
+                  px-4 md:px-5 py-2 rounded-lg
+                  hover:bg-emerald-600 hover:text-white
+                  transition duration-300">
+
+            View All →
+
+        </a>
+    </div>
+
+</div>
+
 
         <div class="grid md:grid-cols-3 gap-8">
 
@@ -591,14 +664,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="max-w-7xl mx-auto px-6">
 
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
-                Real Transformations
-            </h2>
-            <p class="mt-4 text-slate-600">
-                See the real results achieved by our clients.
-            </p>
-        </div>
+       <div class="flex items-center justify-between mb-14">
+
+    {{-- Left Content --}}
+    <div class="max-w-xl">
+
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-800">
+            Real Transformations
+        </h2>
+
+        <p class="mt-2 md:mt-4 text-sm md:text-base text-slate-600">
+            See the real results achieved by our clients.
+        </p>
+
+    </div>
+
+    {{-- Right Button --}}
+    <div class="shrink-0">
+        <a href="{{ route('transformations.page') }}"
+           class="text-sm md:text-base border border-emerald-600 text-emerald-600
+                  px-4 md:px-5 py-2 rounded-lg
+                  hover:bg-emerald-600 hover:text-white
+                  transition duration-300">
+
+            View All →
+
+        </a>
+    </div>
+
+</div>
+
 
         <div class="swiper transformSwiper">
             <div class="swiper-wrapper">

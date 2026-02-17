@@ -36,7 +36,7 @@ public function store(Request $request)
 
     About::create($data);
 
-    return redirect()->route('abouts.index')
+    return redirect()->route('admin.abouts.index')
         ->with('success','About Added Successfully');
 }
 
@@ -56,7 +56,7 @@ public function update(Request $request, About $about)
 
     $about->update($data);
 
-    return redirect()->route('abouts.index')
+    return redirect()->route('admin.abouts.index')
         ->with('success','Updated Successfully');
 }
 

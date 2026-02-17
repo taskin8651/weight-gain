@@ -1,17 +1,25 @@
+@php 
+use App\Models\Setting;
+$setting = App\Models\Setting::first();
+@endphp
+
 <nav x-data="{ open: false, serviceOpen: false }"
      class="bg-white shadow-sm fixed w-full z-50">
 
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
         {{-- Logo --}}
-        <a href="{{ route('home') }}" class="flex items-center gap-2">
+        <a href="{{ route('home') }}" class="flex items-center ">
             @if(!empty($setting->logo))
-                <img src="{{ asset('storage/'.$setting->logo) }}"
-                     class="h-10 object-contain">
-            @endif
+               <img src="{{ asset('storage/'.$setting->logo) }}"
+     class="h-20 w-40 md:h-22 md:w-35 object-cover object-center mx-auto"
+     style="object-position: center;">
+
+            @else
             <span class="text-lg font-semibold text-emerald-600">
-                {{ $setting->site_title ?? 'Fitness Coaching' }}
+                {{ $setting->site_name ?? 'Fitness Coaching' }}
             </span>
+            @endif  
         </a>
 
         {{-- Desktop Menu --}}

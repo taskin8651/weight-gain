@@ -11,55 +11,65 @@ class DietPlanController extends Controller
 {
     public function index()
     {
-        $dietPlans = DietPlan::with('program')->latest()->paginate(10);
+        $dietPlans = DietPlan::with('program')
+            ->latest()
+            ->paginate(10);
+
         return view('admin.diet_plans.index', compact('dietPlans'));
     }
 
     public function create()
     {
-        $programs = Program::where('is_active',1)->get();
+        $programs = Program::where('is_active', 1)->get();
+
         return view('admin.diet_plans.create', compact('programs'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'goal' => 'required',
-            'program_id' => 'required'
+        $validated = $request->validate([
+            'title'       => 'required|string|max:255',
+            'description' => 'required|string',
+            'goal'        => 'required|in:weight_loss,weight_gain',
+            'program_id'  => 'required|exists:programs,id',
         ]);
 
-        DietPlan::create($request->all());
+        DietPlan::create($validated);
 
-        return redirect()->route('diet-plans.index')
-            ->with('success','Diet Plan Created Successfully');
+        return redirect()
+            ->route('admin.diet-plans.index')
+            ->with('success', 'Diet Plan Created Successfully');
     }
 
     public function edit(DietPlan $diet_plan)
     {
-        $programs = Program::where('is_active',1)->get();
-        return view('admin.diet_plans.edit', compact('diet_plan','programs'));
+        $programs = Program::where('is_active', 1)->get();
+
+        return view('admin.diet_plans.edit', compact('diet_plan', 'programs'));
     }
 
     public function update(Request $request, DietPlan $diet_plan)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'goal' => 'required',
-            'program_id' => 'required'
+        $validated = $request->validate([
+            'title'       => 'required|string|max:255',
+            'description' => 'required|string',
+            'goal'        => 'required|in:weight_loss,weight_gain',
+            'program_id'  => 'required|exists:programs,id',
         ]);
 
-        $diet_plan->update($request->all());
+        $diet_plan->update($validated);
 
-        return redirect()->route('diet-plans.index')
-            ->with('success','Diet Plan Updated Successfully');
+        return redirect()
+            ->route('admin.diet-plans.index')
+            ->with('success', 'Diet Plan Updated Successfully');
     }
 
     public function destroy(DietPlan $diet_plan)
     {
         $diet_plan->delete();
-        return back()->with('success','Diet Plan Deleted');
+
+        return redirect()
+            ->route('admin.diet-plans.index')
+            ->with('success', 'Diet Plan Deleted Successfully');
     }
 }

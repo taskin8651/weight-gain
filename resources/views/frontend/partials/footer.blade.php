@@ -1,3 +1,8 @@
+@php 
+use App\Models\Setting;
+$setting = App\Models\Setting::first();
+@endphp
+
 <footer class="bg-slate-900 text-slate-300 pt-16 pb-8">
 
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
@@ -8,12 +13,13 @@
             <div class="flex items-center gap-2 mb-4">
                 @if(!empty($setting->logo))
                     <img src="{{ asset('storage/'.$setting->logo) }}"
-                         class="h-10 object-contain">
-                @endif
-
-                <span class="text-lg font-semibold text-white">
-                    {{ $setting->site_title ?? 'Fitness Coaching' }}
-                </span>
+                         class="h-18 w-32 object-contain">
+                         @else
+                            
+                            <span class="text-lg font-semibold text-white">
+                                {{ $setting->site_name ?? 'Fitness Coaching' }}
+                            </span>
+                            @endif
             </div>
 
             <p class="text-sm text-slate-400">

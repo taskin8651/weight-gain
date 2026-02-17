@@ -42,7 +42,7 @@
             </thead>
 
             <tbody class="divide-y divide-slate-200 bg-white">
-                @foreach($dietPlans as $dietPlan)
+                @forelse($dietPlans as $dietPlan)
                 <tr class="hover:bg-slate-50 transition">
 
                     <td class="px-6 py-4 text-sm text-slate-700">
@@ -51,7 +51,7 @@
 
                     <td class="px-6 py-4 text-sm">
                         <span class="px-2 py-1 text-xs rounded-full
-                            {{ $dietPlan->goal == 'weight_loss'
+                            {{ $dietPlan->goal === 'weight_loss'
                                 ? 'bg-red-100 text-red-600'
                                 : 'bg-green-100 text-green-600' }}">
                             {{ ucfirst(str_replace('_',' ',$dietPlan->goal)) }}
@@ -64,28 +64,37 @@
 
                     <td class="px-6 py-4 text-center space-x-2">
 
-                        <a href="{{ route('admin.diet-plans.edit',$dietPlan->id) }}"
-                           class="px-3 py-1 bg-yellow-500 text-white text-xs rounded-lg
-                                  hover:bg-yellow-600 transition">
-                            Edit
-                        </a>
+                        {{-- EDIT --}}
+                      <a href="{{ route('admin.diet-plans.edit', $dietPlan) }}"
+   class="px-3 py-1 bg-yellow-500 text-white text-xs rounded-lg hover:bg-yellow-600 transition">
+    Edit
+</a>
 
-                        <form action="{{ route('admin.diet-plans.destroy',$dietPlan->id) }}"
-                              method="POST"
-                              class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                class="px-3 py-1 bg-red-600 text-white text-xs rounded-lg
-                                       hover:bg-red-700 transition">
-                                Delete
-                            </button>
-                        </form>
+
+                        {{-- DELETE --}}
+                       <form action="{{ route('admin.diet-plans.destroy', $dietPlan) }}"
+      method="POST"
+      class="inline-block"
+      onsubmit="return confirm('Are you sure you want to delete this diet plan?')">
+    @csrf
+    @method('DELETE')
+    <button
+        class="px-3 py-1 bg-red-600 text-white text-xs rounded-lg hover:bg-red-700 transition">
+        Delete
+    </button>
+</form>
+
 
                     </td>
 
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="4" class="px-6 py-4 text-center text-slate-500">
+                        No Diet Plans Found.
+                    </td>
+                </tr>
+                @endforelse
             </tbody>
 
         </table>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
 
@@ -48,7 +48,7 @@
                 {{ $transformation->description }}
             </p>
 
-            <a href="{{ route('contact.page') }}"
+            <a href="{{ route('appointment.page') }}"
                class="mt-8 inline-block bg-emerald-600 text-white px-8 py-3 rounded-lg hover:bg-emerald-700 transition">
                 Start Your Journey
             </a>

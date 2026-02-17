@@ -13,6 +13,8 @@ class Transformation extends Model
         'name',
         'before_image',
         'after_image',
+        'goal',
         'result',
+        'description',
     ];
 }

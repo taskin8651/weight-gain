@@ -7,8 +7,8 @@
         <label class="block text-sm font-semibold mb-1">
             Site Title
         </label>
-        <input type="text" name="site_title"
-            value="{{ old('site_title', $setting->site_title ?? '') }}"
+        <input type="text" name="site_name"
+            value="{{ old('site_name', $setting->site_name ?? '') }}"
             class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500">
     </div>
 

@@ -38,7 +38,7 @@ class ProgramController extends Controller
 
         Program::create($data);
 
-        return redirect()->route('programs.index')
+        return redirect()->route('admin.programs.index')
             ->with('success','Program Created Successfully');
     }
 
@@ -65,7 +65,7 @@ class ProgramController extends Controller
 
         $program->update($data);
 
-        return redirect()->route('programs.index')
+        return redirect()->route('admin.programs.index')
             ->with('success','Program Updated Successfully');
     }
 
