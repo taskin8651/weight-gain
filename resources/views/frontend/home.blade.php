@@ -3,73 +3,61 @@
 @section('content')
 
 {{-- HERO SLIDER --}}
-<section class="relative">
+<section class="relative overflow-hidden">
 
-    <div class="swiper heroSwiper h-[90vh]">
+    <div class="swiper heroSwiper h-[85vh] md:h-screen">
 
         <div class="swiper-wrapper">
 
-            {{-- Slide 1 --}}
             <div class="swiper-slide relative">
 
                 {{-- Background --}}
-                <div class="absolute inset-0 bg-cover bg-center"
+                <div class="absolute inset-0 bg-cover bg-center scale-105"
                      style="background-image: url('{{ (!empty($hero) && !empty($hero->background_image))
                         ? asset('storage/'.$hero->background_image)
                         : 'https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1600' }}');">
                 </div>
 
-                {{-- Overlay --}}
-                <div class="absolute inset-0 bg-black/60"></div>
+                {{-- Gradient Overlay --}}
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
 
                 {{-- Content --}}
-                <div class="relative z-10 flex items-center justify-center h-full text-center px-6">
+                <div class="relative z-10 flex items-center h-full px-6">
+                    <div class="max-w-6xl mx-auto w-full">
 
-                    <div class="max-w-4xl text-white">
+                        <div class="max-w-2xl text-white">
 
-                        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 fadeUp">
-                            {{ $hero->title ?? 'Transform Your Body & Mind' }}
-                        </h1>
+                            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 animate-slideUp">
+                                {{ $hero->title ?? 'Transform Your Body & Mind' }}
+                            </h1>
 
-                        <p class="text-lg md:text-xl text-gray-200 mb-8 fadeUp delay-200">
-                            {{ $hero->description ?? 'Personalized coaching for sustainable weight loss and healthy weight gain.' }}
-                        </p>
+                            <p class="text-lg md:text-xl text-gray-200 mb-8 animate-slideUp delay-200">
+                                {{ $hero->description ?? 'Personalized coaching for sustainable weight loss and healthy weight gain.' }}
+                            </p>
 
-                        <a href="{{ route('appointment.page') }}"
-                           class="bg-emerald-600 px-8 py-3 rounded-lg text-white text-lg font-semibold hover:bg-emerald-700 transition shadow-lg fadeUp delay-300">
-                            {{ $hero->button_text ?? 'Explore Programs' }}
-                        </a>
+                            <div class="flex flex-wrap gap-4 animate-slideUp delay-400">
+
+                                <a href="{{ route('appointment.page') }}"
+                                   class="bg-emerald-600 px-8 py-3 rounded-lg text-white text-lg font-semibold hover:bg-emerald-700 transition shadow-xl hover:scale-105 transform duration-300">
+                                    {{ $hero->button_text ?? 'Get Started' }}
+                                </a>
+
+                                <a href="{{ route('services.page') }}"
+                                   class="border border-white px-8 py-3 rounded-lg text-white text-lg hover:bg-white hover:text-black transition duration-300">
+                                    Our Services
+                                </a>
+
+                            </div>
+
+                        </div>
 
                     </div>
-
-                </div>
-            </div>
-
-            {{-- Slide 2 --}}
-            <div class="swiper-slide relative">
-
-                <div class="absolute inset-0 bg-cover bg-center"
-                     style="background-image: url('https://images.unsplash.com/photo-1594737625785-cb72a2b3a61d?q=80&w=1600');">
                 </div>
 
-                <div class="absolute inset-0 bg-black/60"></div>
-
-                <div class="relative z-10 flex items-center justify-center h-full text-center px-6">
-                    <div class="max-w-4xl text-white">
-
-                        <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                            Achieve Your Dream Physique
-                        </h1>
-
-                        <p class="text-lg md:text-xl text-gray-200 mb-8">
-                            Structured training and expert guidance tailored for your goals.
-                        </p>
-
-                        <a href="{{ route('appointment.page') }}"
-                           class="bg-emerald-600 px-8 py-3 rounded-lg text-white text-lg font-semibold hover:bg-emerald-700 transition shadow-lg">
-                            Start Today
-                        </a>
-
+                {{-- Scroll Down Indicator --}}
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+                    <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                        <div class="w-1 h-3 bg-white mt-2 rounded-full animate-pulse"></div>
                     </div>
                 </div>
 
@@ -77,13 +65,9 @@
 
         </div>
 
-        {{-- Pagination --}}
-        <div class="swiper-pagination"></div>
-
     </div>
 
 </section>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -91,53 +75,42 @@ document.addEventListener("DOMContentLoaded", function () {
     new Swiper(".heroSwiper", {
         loop: true,
         effect: "fade",
-        speed: 1000,
+        speed: 1200,
         autoplay: {
-            delay: 5000,
+            delay: 6000,
             disableOnInteraction: false,
         },
-        pagination: {
-            el: ".heroSwiper .swiper-pagination",
-            clickable: true,
+        fadeEffect: {
+            crossFade: true
         },
     });
 
 });
 </script>
-
-
 <style>
-.heroSwiper {
-    position: relative;
+
+.animate-slideUp {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: slideUp 1s ease forwards;
 }
 
-.swiper-slide {
+.animate-slideUp.delay-200 { animation-delay: .2s; }
+.animate-slideUp.delay-400 { animation-delay: .4s; }
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.heroSwiper .swiper-slide {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
-.fadeUp {
-    animation: fadeUp 1s ease forwards;
-    opacity: 0;
-}
-
-.fadeUp.delay-200 { animation-delay: 0.2s; }
-.fadeUp.delay-300 { animation-delay: 0.3s; }
-
-@keyframes fadeUp {
-    from {
-        transform: translateY(40px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 </style>
-
-
 
 
 {{-- ABOUT SECTION --}}
