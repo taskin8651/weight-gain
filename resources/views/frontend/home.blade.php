@@ -87,25 +87,29 @@ document.addEventListener("DOMContentLoaded", function () {
             delay: 6000,
             disableOnInteraction: false,
         },
+        pagination: {
+            el: ".heroSwiper .swiper-pagination",
+            clickable: true,
+        },
         fadeEffect: {
             crossFade: true
-        },
+        }
     });
 
 });
 </script>
 <style>
 
-.animate-slideUp {
+.hero-animate {
     opacity: 0;
     transform: translateY(40px);
-    animation: slideUp 1s ease forwards;
+    animation: heroFade 1s ease forwards;
 }
 
-.animate-slideUp.delay-200 { animation-delay: .2s; }
-.animate-slideUp.delay-400 { animation-delay: .4s; }
+.hero-animate.delay-200 { animation-delay: .2s; }
+.hero-animate.delay-400 { animation-delay: .4s; }
 
-@keyframes slideUp {
+@keyframes heroFade {
     to {
         opacity: 1;
         transform: translateY(0);
