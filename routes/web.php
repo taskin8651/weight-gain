@@ -81,6 +81,8 @@ Route::resource('brands',
     App\Http\Controllers\Admin\ContactController::class)
     ->only(['index','show','destroy']);
 
+    Route::resource('video-reviews', App\Http\Controllers\Admin\VideoReviewController::class);
+
 
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

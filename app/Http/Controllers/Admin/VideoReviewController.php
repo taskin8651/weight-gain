@@ -3,63 +3,92 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\VideoReview;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VideoReviewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $reviews = VideoReview::latest()->paginate(10);
+
+        return view('admin.video_reviews.index', compact('reviews'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.video_reviews.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'designation' => 'nullable|string|max:255',
+            'youtube_url' => 'required|url',
+            'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'is_active'   => 'nullable|boolean',
+        ]);
+
+        if ($request->hasFile('thumbnail')) {
+            $validated['thumbnail'] =
+                $request->file('thumbnail')->store('video_reviews', 'public');
+        }
+
+        $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        VideoReview::create($validated);
+
+        return redirect()
+            ->route('admin.video-reviews.index')
+            ->with('success', 'Video Review Created Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(VideoReview $video_review)
     {
-        //
+        return view('admin.video_reviews.edit', compact('video_review'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, VideoReview $video_review)
     {
-        //
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'designation' => 'nullable|string|max:255',
+            'youtube_url' => 'required|url',
+            'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'is_active'   => 'nullable|boolean',
+        ]);
+
+        if ($request->hasFile('thumbnail')) {
+
+            if ($video_review->thumbnail) {
+                Storage::disk('public')->delete($video_review->thumbnail);
+            }
+
+            $validated['thumbnail'] =
+                $request->file('thumbnail')->store('video_reviews', 'public');
+        }
+
+        $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        $video_review->update($validated);
+
+        return redirect()
+            ->route('admin.video-reviews.index')
+            ->with('success', 'Video Review Updated Successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(VideoReview $video_review)
     {
-        //
-    }
+        if ($video_review->thumbnail) {
+            Storage::disk('public')->delete($video_review->thumbnail);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $video_review->delete();
+
+        return redirect()
+            ->route('admin.video-reviews.index')
+            ->with('success', 'Video Review Deleted Successfully');
     }
 }
