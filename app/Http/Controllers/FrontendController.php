@@ -21,7 +21,7 @@ class FrontendController extends Controller
     public function home()
     {
         $setting = Setting::first();
-        $hero = HeroSection::all();
+        $heroes = HeroSection::all();
         $programs = Program::latest()->get();
         $about = About::latest()->first();
         $services = Service::latest()->get();
@@ -32,7 +32,7 @@ class FrontendController extends Controller
 
         return view('frontend.home', compact(
             'setting',
-            'hero',
+            'heroes',
             'programs',
             'about',
             'services',
