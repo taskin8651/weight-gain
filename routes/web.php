@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Frontend\AppointmentController;
+use App\Http\Controllers\Frontend\VideoReviewController;
 
 
 Route::redirect('/', '/login');
@@ -82,6 +83,7 @@ Route::resource('brands',
     ->only(['index','show','destroy']);
 
     Route::resource('video-reviews', App\Http\Controllers\Admin\VideoReviewController::class);
+    
 
 
 });
@@ -136,3 +138,6 @@ Route::get('/diet-plans/{id}', [FrontendController::class,'dietDetail'])
 Route::get('/transformations/{id}',
     [FrontendController::class,'transformationDetail'])
     ->name('transformations.detail');
+
+    Route::get('/video-reviews', [VideoReviewController::class, 'index'])
+    ->name('video-reviews.page');

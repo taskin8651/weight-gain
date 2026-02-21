@@ -13,6 +13,7 @@ use App\Models\Transformation;
 use App\Models\Testimonial;
 use App\Models\Brand;
 use App\Models\Contact;
+use App\Models\VideoReview;
 
 
 
@@ -29,6 +30,9 @@ class FrontendController extends Controller
         $transformations = Transformation::latest()->get();
         $testimonials = Testimonial::latest()->get();
         $brands = Brand::latest()->get();
+         $videoReviews = VideoReview::where('is_active',1)
+                    ->latest()
+                    ->get();
 
         return view('frontend.home', compact(
             'setting',
@@ -39,7 +43,8 @@ class FrontendController extends Controller
             'dietPlans',
             'transformations',
             'testimonials',
-            'brands'
+            'brands',
+            'videoReviews'
         ));
     }
 
