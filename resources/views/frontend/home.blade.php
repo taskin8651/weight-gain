@@ -9,33 +9,33 @@
 
         <div class="swiper-wrapper">
 
+            @forelse($heroes as $hero)
+
             <div class="swiper-slide relative">
 
                 {{-- Background --}}
-                <div class="absolute inset-0 bg-cover bg-center scale-105"
-                     style="background-image: url('{{ (!empty($hero) && !empty($hero->background_image))
-                        ? asset('storage/'.$hero->background_image)
-                        : 'https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1600' }}');">
+                <div class="absolute inset-0 bg-cover bg-center scale-110 transition-transform duration-[8000ms]"
+                     style="background-image: url('{{ asset('storage/'.$hero->background_image) }}');">
                 </div>
 
-                {{-- Gradient Overlay --}}
+                {{-- Dark Gradient Overlay --}}
                 <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
 
                 {{-- Content --}}
                 <div class="relative z-10 flex items-center h-full px-6">
-                    <div class="max-w-6xl mx-auto w-full">
+                    <div class="max-w-7xl mx-auto w-full">
 
                         <div class="max-w-2xl text-white">
 
-                            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 animate-slideUp">
-                                {{ $hero->title ?? 'Transform Your Body & Mind' }}
+                            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 hero-animate">
+                                {{ $hero->title }}
                             </h1>
 
-                            <p class="text-lg md:text-xl text-gray-200 mb-8 animate-slideUp delay-200">
-                                {{ $hero->description ?? 'Personalized coaching for sustainable weight loss and healthy weight gain.' }}
+                            <p class="text-lg md:text-xl text-gray-200 mb-8 hero-animate delay-200">
+                                {{ $hero->description }}
                             </p>
 
-                            <div class="flex flex-wrap gap-4 animate-slideUp delay-400">
+                            <div class="flex flex-wrap gap-4 hero-animate delay-400">
 
                                 <a href="{{ route('appointment.page') }}"
                                    class="bg-emerald-600 px-8 py-3 rounded-lg text-white text-lg font-semibold hover:bg-emerald-700 transition shadow-xl hover:scale-105 transform duration-300">
@@ -54,21 +54,28 @@
                     </div>
                 </div>
 
-                {{-- Scroll Down Indicator --}}
-                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-                    <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-                        <div class="w-1 h-3 bg-white mt-2 rounded-full animate-pulse"></div>
-                    </div>
-                </div>
-
             </div>
 
+            @empty
+
+            {{-- Fallback Slide --}}
+            <div class="swiper-slide relative">
+                <div class="absolute inset-0 bg-black"></div>
+                <div class="relative z-10 flex items-center justify-center h-full text-white">
+                    <h1 class="text-4xl font-bold">No Hero Content Found</h1>
+                </div>
+            </div>
+
+            @endforelse
+
         </div>
+
+        {{-- Pagination --}}
+        <div class="swiper-pagination"></div>
 
     </div>
 
 </section>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
