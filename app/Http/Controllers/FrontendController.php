@@ -21,7 +21,7 @@ class FrontendController extends Controller
     public function home()
     {
         $setting = Setting::first();
-        $hero = HeroSection::latest()->first();
+        $hero = HeroSection::all();
         $programs = Program::latest()->get();
         $about = About::latest()->first();
         $services = Service::latest()->get();
