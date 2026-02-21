@@ -28,7 +28,7 @@ class VideoReviewController extends Controller
             'designation' => 'nullable|string|max:255',
             'youtube_url' => 'required|url',
             'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'is_active'   => 'nullable|boolean',
+            // 'is_active'   => 'nullable|boolean',
         ]);
 
         if ($request->hasFile('thumbnail')) {
@@ -57,7 +57,7 @@ class VideoReviewController extends Controller
             'designation' => 'nullable|string|max:255',
             'youtube_url' => 'required|url',
             'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'is_active'   => 'nullable|boolean',
+            // 'is_active'   => 'nullable|boolean',
         ]);
 
         if ($request->hasFile('thumbnail')) {
