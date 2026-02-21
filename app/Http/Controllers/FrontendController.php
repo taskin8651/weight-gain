@@ -22,7 +22,6 @@ class FrontendController extends Controller
     {
         $setting = Setting::first();
         $hero = HeroSection::all();
-        dd($hero);
         $programs = Program::latest()->get();
         $about = About::latest()->first();
         $services = Service::latest()->get();
