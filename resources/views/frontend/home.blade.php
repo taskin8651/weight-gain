@@ -200,11 +200,11 @@ document.addEventListener("DOMContentLoaded", function () {
     {{-- Left Content --}}
     <div>
         <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
-            Our Programs
+            Our Cources
         </h2>
 
         <p class="mt-3 text-slate-600">
-            Choose a personalized program designed for your fitness goals.
+            Choose a personalized courses designed for your fitness goals.
         </p>
     </div>
 

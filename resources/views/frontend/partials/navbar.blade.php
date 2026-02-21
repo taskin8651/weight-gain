@@ -32,7 +32,7 @@ $setting = App\Models\Setting::first();
 
             <a href="{{ route('programs.page') }}"
                class="{{ request()->routeIs('programs.*') ? 'text-emerald-600' : '' }} hover:text-emerald-600 transition">
-                Programs
+                Cources
             </a>
 
             <a href="{{ route('diet.page') }}"
