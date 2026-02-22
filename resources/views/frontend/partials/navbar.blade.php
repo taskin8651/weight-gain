@@ -121,7 +121,7 @@ $setting = App\Models\Setting::first();
         <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-medium">
 
             <a href="{{ route('home') }}" @click="open=false">Home</a>
-            <a href="{{ route('programs.page') }}" @click="open=false">Programs</a>
+            <a href="{{ route('programs.page') }}" @click="open=false">Courses</a>
             <a href="{{ route('diet.page') }}" @click="open=false">Diet Plans</a>
 
             {{-- Mobile Dropdown --}}

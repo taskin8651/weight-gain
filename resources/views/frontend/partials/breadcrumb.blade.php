@@ -10,7 +10,8 @@
         'diet.page' => 'Diet Plans',
         'diet.detail' => 'Diet Plan Details',
         'transformations.page' => 'Transformations',
-        'transformations.detail' => 'Transformation Details'
+        'transformations.detail' => 'Transformation Details',
+        'video-reviews.page' => 'Video Reviews',
     ];
 
     $currentTitle = $pageTitles[$currentRoute] ?? 'Page';

@@ -48,7 +48,7 @@ $setting = App\Models\Setting::first();
             <li>
                 <a href="{{ route('programs.page') }}"
                    class="hover:text-emerald-400 transition">
-                    Programs
+                    Courses
                 </a>
             </li>
 
