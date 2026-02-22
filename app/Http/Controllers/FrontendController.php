@@ -86,8 +86,13 @@ class FrontendController extends Controller
 
     public function about()
     {
+         $testimonials = Testimonial::latest()->get();
+        $brands = Brand::latest()->get();
         $about = About::first();
-        return view('frontend.about', compact('about'));
+         $videoReviews = VideoReview::where('is_active',1)
+                    ->latest()
+                    ->get();
+        return view('frontend.about', compact('about', 'testimonials', 'brands', 'videoReviews'));
     }
 
     public function contact()

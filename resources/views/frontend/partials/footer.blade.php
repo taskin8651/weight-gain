@@ -29,31 +29,92 @@ $setting = App\Models\Setting::first();
         </div>
 
         {{-- Quick Links --}}
-        <div>
-            <h3 class="text-white font-semibold mb-4">
-                Quick Links
-            </h3>
+        <div class="grid grid-cols-2 gap-8">
 
-            <ul class="space-y-2 text-sm">
-                <li><a href="#programs" class="hover:text-emerald-400 transition">Programs</a></li>
-                <li><a href="#about" class="hover:text-emerald-400 transition">About</a></li>
-                <li><a href="#services" class="hover:text-emerald-400 transition">Services</a></li>
-                <li><a href="#contact" class="hover:text-emerald-400 transition">Contact</a></li>
-            </ul>
-        </div>
+    {{-- Quick Links --}}
+    <div>
+        <h3 class="text-white font-semibold mb-4">
+            Quick Links
+        </h3>
 
-        {{-- Contact Info --}}
-        <div>
-            <h3 class="text-white font-semibold mb-4">
-                Contact
-            </h3>
+        <ul class="space-y-2 text-sm">
+            <li>
+                <a href="{{ route('home') }}"
+                   class="hover:text-emerald-400 transition">
+                    Home
+                </a>
+            </li>
 
-            <ul class="space-y-2 text-sm text-slate-400">
-                <li>📧 {{ $setting->email ?? 'info@fitness.com' }}</li>
-                <li>📞 {{ $setting->phone ?? '+91 98765 43210' }}</li>
-                <li>📍 {{ $setting->address ?? 'Your Fitness Studio Address' }}</li>
-            </ul>
-        </div>
+            <li>
+                <a href="{{ route('programs.page') }}"
+                   class="hover:text-emerald-400 transition">
+                    Programs
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('services.page') }}"
+                   class="hover:text-emerald-400 transition">
+                    Services
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('diet.page') }}"
+                   class="hover:text-emerald-400 transition">
+                    Diet Plans
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('transformations.page') }}"
+                   class="hover:text-emerald-400 transition">
+                    Transformations
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('video-reviews.page') }}"
+                   class="hover:text-emerald-400 transition">
+                    Video Reviews
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('contact.page') }}"
+                   class="hover:text-emerald-400 transition">
+                    Contact
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    {{-- Contact Info --}}
+    <div>
+        <h3 class="text-white font-semibold mb-4">
+            Contact
+        </h3>
+
+        <ul class="space-y-2 text-sm text-slate-400">
+            <li class="flex items-start gap-2">
+                <span>📧</span>
+                <span>{{ $setting->email ?? 'info@fitness.com' }}</span>
+            </li>
+
+            <li class="flex items-start gap-2">
+                <span>📞</span>
+                <span>{{ $setting->phone ?? '+91 98765 43210' }}</span>
+            </li>
+
+            <li class="flex items-start gap-2">
+                <span>📍</span>
+                <span>{{ $setting->address ?? 'Your Fitness Studio Address' }}</span>
+            </li>
+        </ul>
+    </div>
+
+</div>
 
         {{-- Social Links --}}
         <div>
