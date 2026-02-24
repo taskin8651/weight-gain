@@ -1,50 +1,129 @@
-@extends('frontend.layouts.app')
+
+@extends('custom.master')
 
 @section('content')
 
-@include('frontend.partials.breadcrumb')
 
-<section class="py-24 bg-emerald-50">
-    <div class="max-w-5xl mx-auto px-6">
+<!-- Contact Area -->
+<div class="contact-area pt-100 pb-70">
+    <div class="container">
+        <div class="row align-items-center">
 
-        <div class="text-center mb-16">
-            <h1 class="text-4xl font-bold text-slate-800">Contact Us</h1>
-            <p class="mt-4 text-slate-600">
-                Get in touch and start your fitness journey today.
-            </p>
-        </div>
+            <!-- Contact Info -->
+            <div class="col-lg-4">
+                <div class="contact-info">
+                    <span>Contact Info</span>
+                    <h2>Let's Connect With Us</h2>
 
-        <div class="bg-white rounded-2xl shadow p-8">
+                    <ul>
+                        <li>
+                            <div class="content">
+                                <i class='bx bx-phone-call'></i>
+                                <h3>Phone Number</h3>
+                                <a href="tel:{{ $setting->phone ?? '' }}">
+                                    {{ $setting->phone ?? 'N/A' }}
+                                </a>
+                            </div>
+                        </li>
 
-            <form method="POST" action="#">
-                @csrf
+                        <li>
+                            <div class="content">
+                                <i class='bx bxs-map'></i>
+                                <h3>Address</h3>
+                                <span>{{ $setting->address ?? 'N/A' }}</span>
+                            </div>
+                        </li>
 
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <li>
+                            <div class="content">
+                                <i class='bx bx-message'></i>
+                                <h3>Email</h3>
+                                <a href="mailto:{{ $setting->email ?? '' }}">
+                                    {{ $setting->email ?? 'N/A' }}
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                    <input type="text" name="name"
-                           placeholder="Your Name"
-                           class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-emerald-500">
 
-                    <input type="email" name="email"
-                           placeholder="Your Email"
-                           class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-emerald-500">
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="contact-form">
+                    <h3>Contact With Us!</h3>
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('contact.store') }}">
+                        @csrf
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="text" name="name"
+                                           class="form-control"
+                                           placeholder="Name*"
+                                           value="{{ old('name') }}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="email" name="email"
+                                           class="form-control"
+                                           placeholder="Email*"
+                                           value="{{ old('email') }}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" name="phone"
+                                           class="form-control"
+                                           placeholder="Phone Number*"
+                                           value="{{ old('phone') }}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <textarea name="message"
+                                              class="form-control"
+                                              rows="5"
+                                              placeholder="Your Message*">{{ old('message') }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <button type="submit" class="default-btn">
+                                    Send Message
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
 
                 </div>
-
-                <textarea name="message" rows="5"
-                          placeholder="Your Message"
-                          class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-emerald-500 mb-6"></textarea>
-
-                <button type="submit"
-                        class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
-                    Send Message
-                </button>
-
-            </form>
+            </div>
 
         </div>
-
     </div>
-</section>
+</div>
+<!-- Contact Area End -->
+
+
+<!-- Map Area -->
+<div class="map-area">
+    <div class="container-fluid m-0 p-0">
+        <iframe src="https://www.google.com/maps?q={{ urlencode($setting->address ?? '') }}&output=embed"></iframe>
+    </div>
+</div>
+<!-- Map Area End -->
 
 @endsection

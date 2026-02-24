@@ -1,78 +1,150 @@
-@extends('frontend.layouts.app')
+@extends('custom.master')
 
 @section('content')
 
-@include('frontend.partials.breadcrumb')
-
-<section class="py-24 bg-white">
-<div class="max-w-7xl mx-auto px-6">
-
-    <div class="text-center mb-16">
-        <h1 class="text-4xl font-bold text-slate-800">
-            Real Transformations
-        </h1>
-        <p class="mt-4 text-slate-600">
-            See the incredible results achieved by our clients.
-        </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-
-        @forelse($transformations as $item)
-
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
-
-            {{-- Before / After Image --}}
-            <div class="relative h-64">
-
-                <img src="{{ !empty($item->before_image)
-                    ? asset('storage/'.$item->before_image)
-                    : 'https://via.placeholder.com/500x500' }}"
-                     class="absolute inset-0 w-full h-full object-cover">
-
-                <img src="{{ !empty($item->after_image)
-                    ? asset('storage/'.$item->after_image)
-                    : 'https://via.placeholder.com/500x500' }}"
-                     class="absolute inset-0 w-full h-full object-cover opacity-0 hover:opacity-100 transition duration-500">
-
-                <div class="absolute bottom-3 left-3 bg-black/60 text-white text-xs px-3 py-1 rounded">
-                    Hover to See After
+  <!-- Inner Banner -->
+        <div class="inner-banner inner-bg8">
+            <div class="container">
+                <div class="inner-title text-center">
+                    <h3>Our Body Transformation</h3>
+                    <ul>
+                        <li>
+                            <a href="{{ route('home') }}">Home</a>
+                        </li>
+                        <li>Our Body Transformation</li>
+                    </ul>
                 </div>
             </div>
+        </div>
+        <!-- Inner Banner End -->
 
-            <div class="p-6">
+        <!-- Services Area -->
+  <div class="services-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title text-center">
+            <span>What We Offer</span>
+            <h2>Our Body Transformation</h2>
+        </div>
 
-                <h3 class="text-xl font-semibold mb-2">
-                    {{ $item->name ?? 'Client Name' }}
-                </h3>
+        <div class="row pt-45 justify-content-center">
 
-                <span class="px-3 py-1 text-xs rounded-full
-                    {{ $item->goal=='weight_loss'
-                        ? 'bg-emerald-100 text-emerald-600'
-                        : 'bg-blue-100 text-blue-600' }}">
-                    {{ ucfirst(str_replace('_',' ',$item->goal ?? 'weight_loss')) }}
-                </span>
+            @forelse($transformations as $item)
 
-                <p class="text-sm text-slate-600 mt-4">
-                    {{ \Illuminate\Support\Str::limit($item->description,120) }}
-                </p>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="services-card transformation-card">
 
-                <a href="{{ route('transformations.detail',$item->id) }}"
-                   class="mt-5 inline-block bg-emerald-600 text-white px-5 py-2 rounded-lg hover:bg-emerald-700 transition">
-                    View Story
-                </a>
+                        <!-- Before / After Image -->
+                        <div class="transformation-img position-relative overflow-hidden">
 
+                            <!-- Before -->
+                            <img src="{{ !empty($item->before_image)
+                                ? asset('storage/'.$item->before_image)
+                                : 'https://via.placeholder.com/500x500' }}"
+                                class="before-img w-100">
+
+                            <!-- After -->
+                            <img src="{{ !empty($item->after_image)
+                                ? asset('storage/'.$item->after_image)
+                                : 'https://via.placeholder.com/500x500' }}"
+                                class="after-img w-100">
+
+                            <div class="hover-text">
+                                Hover to See After
+                            </div>
+                        </div>
+
+                        <div class="content text-center mt-3">
+
+                            <h3>{{ $item->name ?? 'Client Name' }}</h3>
+
+                            <span class="goal-badge
+                                {{ $item->goal=='weight_loss'
+                                    ? 'goal-weight'
+                                    : 'goal-muscle' }}">
+                                {{ ucfirst(str_replace('_',' ',$item->goal ?? 'weight_loss')) }}
+                            </span>
+
+                            <p class="mt-3">
+                                {{ \Illuminate\Support\Str::limit($item->description,120) }}
+                            </p>
+
+                            <a href="{{ route('transformations.detail',$item->id) }}"
+                               class="learn-btn mt-3">
+                                View Story
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            @empty
+                <div class="col-12 text-center">
+                    <p>No Transformations Yet</p>
+                </div>
+            @endforelse
+
+
+            <!-- Pagination -->
+            <div class="col-lg-12 text-center mt-4">
+                {{ $transformations->links() }}
             </div>
 
         </div>
-
-        @empty
-            <p class="col-span-3 text-center">No Transformations Yet</p>
-        @endforelse
-
     </div>
-
 </div>
-</section>
+        <!-- Services Area End -->
 
+      
+<style>
+    .transformation-img {
+    height: 300px;
+    position: relative;
+}
+
+.transformation-img img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+.after-img {
+    opacity: 0;
+}
+
+.transformation-card:hover .after-img {
+    opacity: 1;
+}
+
+.hover-text {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.goal-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 12px;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
+.goal-weight {
+    background: #e6f7f0;
+    color: #0d9f6e;
+}
+
+.goal-muscle {
+    background: #e6f0ff;
+    color: #2563eb;
+}
+</style>
 @endsection

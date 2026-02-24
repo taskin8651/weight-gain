@@ -14,6 +14,6 @@ class VideoReviewController extends Controller
                             ->latest()
                             ->paginate(12);
 
-        return view('frontend.video_reviews.index', compact('videoReviews'));
+        return view('custom.video_review', compact('videoReviews'));
     }
 }

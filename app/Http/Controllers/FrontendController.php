@@ -97,7 +97,8 @@ class FrontendController extends Controller
 
     public function contact()
     {
-        return view('frontend.contact');
+        $setting = Setting::first();
+        return view('frontend.contact', compact('setting'));
     }
 
    
@@ -126,7 +127,9 @@ public function dietDetail($id)
 
 public function transformations()
 {
-    $transformations = Transformation::latest()->get();
+    $transformations = Transformation::latest()
+                        ->paginate(9); // 9 per page
+
     return view('frontend.transformations.index', compact('transformations'));
 }
 

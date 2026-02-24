@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Custom\IndexController;
+use App\Http\Controllers\Custom\ProgramController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Frontend\AppointmentController;
 use App\Http\Controllers\Frontend\VideoReviewController;
@@ -100,8 +102,6 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 
 
 
-Route::get('/', [FrontendController::class, 'home'])
-    ->name('home');
 
     
 Route::get('/programs', [FrontendController::class, 'programs'])->name('programs.page');
@@ -140,4 +140,22 @@ Route::get('/transformations/{id}',
     ->name('transformations.detail');
 
     Route::get('/video-reviews', [VideoReviewController::class, 'index'])
+    ->name('video-reviews.page');
+
+
+    Route::get('/', [IndexController::class, 'index'])
+    ->name('home');
+
+
+
+Route::get('/courses', [ProgramController::class, 'index'])
+    ->name('programs.page');    
+Route::get('/courses/{id}', [ProgramController::class, 'show'])
+    ->name('program.details');
+
+Route::post('/appointment', [AppointmentController::class,'store'])
+    ->name('appointment.store');
+    Route::get('/appointment', [AppointmentController::class,'create'])
+    ->name('appointment.page');
+Route::get('/video-reviews', [VideoReviewController::class, 'index'])
     ->name('video-reviews.page');

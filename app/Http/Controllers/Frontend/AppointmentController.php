@@ -12,7 +12,7 @@ class AppointmentController extends Controller
     public function create()
     {
         $programs = Program::all();
-        return view('frontend.appointment', compact('programs'));
+        return view('custom.appointment', compact('programs'));
     }
 
     public function store(Request $request)
@@ -22,7 +22,7 @@ class AppointmentController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'program_id' => 'required',
-            'date' => 'required|date',
+            'appointment_date' => 'required|date',
             'message' => 'nullable'
         ]);
 

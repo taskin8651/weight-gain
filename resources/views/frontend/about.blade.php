@@ -1,417 +1,259 @@
-@extends('frontend.layouts.app')
+@extends('custom.master')
 
 @section('content')
 
-@include('frontend.partials.breadcrumb')
-
-
-<section class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-
-        <div>
-            <img src="{{ !empty($about->image)
-                ? asset('storage/'.$about->image)
-                : 'https://via.placeholder.com/600x500' }}"
-                 class="rounded-2xl shadow-lg w-full">
-        </div> 
-
-        <div>
-            <h1 class="text-4xl font-bold text-slate-800 mb-6">
-                {{ $about->title ?? 'About Us' }}
-            </h1>
-
-            <p class="text-slate-600 leading-relaxed">
-                {{ $about->description ?? 'We provide personalized fitness coaching focused on long-term sustainable results.' }}
-            </p>
-
-            <div class="mt-8">
-                <a href="{{ route('contact.page') }}"
-                   class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
-                    Start Your Journey
-                </a>
+  <!-- Inner Banner -->
+        <div class="inner-banner inner-bg1">
+            <div class="container">
+                <div class="inner-title text-center">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li>
+                            <a href="{{ route('home') }}">Home</a>
+                        </li>
+                        <li>About Us</li>
+                    </ul>
+                </div>
             </div>
         </div>
+        <!-- Inner Banner End -->
 
-    </div>
-</section>
+        <!-- About Area Two -->
+        <div class="about-area-two pb-70">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-content-two">
+                            <div class="section-title">
+                                <span>About Us</span>
+                                <h2>{{ $about->title ?? 'Change Your Life in the next 90 Days of Practice' }}</h2>
+                                <p>
+                                   {{ $about->description ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' }}
+                                </p>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="about-content-item">
+                                        <i class="flaticon-diet"></i>
+                                        <h3>Personalized Nutrition Plan</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                                    </div>
+                                </div>
 
-{{-- VIDEO REVIEWS --}}
-<section class="py-24 bg-white">
+                                <div class="col-lg-6">
+                                    <div class="about-content-item">
+                                        <i class="flaticon-exercise"></i>
+                                        <h3>Personalized Exercises Plan</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                                    </div>
+                                </div>
+                            </div>
 
-    <div class="max-w-7xl mx-auto px-6">
+                            <a href="about.html" class="default-btn">Read More</a>
+                        </div>
+                    </div>
 
-        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-16 gap-6">
+                    <div class="col-lg-6 pe-0">
+                        <div class="about-img">
+                            <img src="{{ !empty($about->image)
+                ? asset('storage/'.$about->image)
+                : 'assets/images/about/about-img1.png' }}" alt="Images">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
-        Customer Video Reviews
-    </h2>
+            <div class="about-shape-two">
+                <img src="assets/images/shape/shape2.png" alt="About Images">
+                <img src="assets/images/shape/shape3.png" alt="About Images">
+            </div>
+        </div>
+        <!-- About Area Two End -->
 
-    <a href="{{ route('video-reviews.page') }}"
-       class="self-start md:self-auto inline-flex items-center gap-2 
-              bg-emerald-600 text-white px-6 py-2.5 rounded-lg 
-              hover:bg-emerald-700 transition duration-300 shadow-md hover:shadow-lg">
+ <!-- Blog Widget Area -->
+      <div class="blog-widget-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
 
-        View All
-        <span class="text-lg">→</span>
-    </a>
+            <div class="categories-title mb-4">
+                <h3>Student Reviews</h3>
+            </div>
 
-</div>
+            <div class="col-lg-12">
+                <div class="row justify-content-center">
 
-        {{-- 4 Column Grid --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    @forelse($videoReviews as $review)
 
-            @forelse($videoReviews as $review)
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="blog-item">
 
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer hover:shadow-2xl transition duration-300"
-                 onclick="openVideo('{{ $review->youtube_id }}')">
+                                <div class="video-wrapper">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/{{ $review->youtube_id }}"
+                                        title="{{ $review->name }}"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
 
-                {{-- Thumbnail --}}
-                <div class="relative">
+                                <div class="content text-center mt-3">
+                                    <h5>{{ $review->name }}</h5>
+                                    <span>{{ $review->designation }}</span>
+                                </div>
 
-                    <img src="{{ $review->thumbnail 
-                        ? asset('storage/'.$review->thumbnail)
-                        : 'https://img.youtube.com/vi/'.$review->youtube_id.'/hqdefault.jpg' }}"
-                         class="w-full h-56 object-cover">
-
-                    {{-- Play Button --}}
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
-
-                        <div class="w-14 h-14 bg-emerald-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition duration-300">
-                            ▶
+                            </div>
                         </div>
 
+                    @empty
+                        <div class="col-12 text-center">
+                            <p>No Reviews Available</p>
+                        </div>
+                    @endforelse
+
+
+                   
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+</style>
+        <!-- Blog Widget Area End -->
+
+<div class="testimonials-area ptb-100">
+    <div class="container">
+
+        <div class="section-title text-center mb-5">
+            <span>Testimonials</span>
+            <h2>Customer Satisfaction</h2>
+        </div>
+
+        <div class="testimonials-slider owl-carousel owl-theme">
+
+            @forelse($testimonials as $testimonial)
+
+                <div class="testimonials-item text-center">
+
+                    <i class='bx bxs-quote-left'></i>
+
+                    <p>
+                        {{ \Illuminate\Support\Str::limit(
+                            $testimonial->message ?? 
+                            'This program completely changed my lifestyle and helped me achieve my goals!',
+                            160
+                        ) }}
+                    </p>
+
+                    <!-- Rating -->
+                    <div class="mb-3">
+                        @for($i=1;$i<=5;$i++)
+                            <i class="bx bxs-star {{ $i <= ($testimonial->rating ?? 5) ? 'text-warning' : 'text-muted' }}"></i>
+                        @endfor
+                    </div>
+
+                    <!-- Client Info -->
+                    <div class="content">
+                        <img src="{{ !empty($testimonial->image)
+                            ? asset('storage/'.$testimonial->image)
+                            : 'https://via.placeholder.com/80' }}"
+                             class="rounded-circle mb-3"
+                             width="80" height="80">
+
+                        <h3>{{ $testimonial->name ?? 'Happy Client' }}</h3>
+                        <span>{{ $testimonial->designation ?? 'Fitness Member' }}</span>
                     </div>
 
                 </div>
 
-                <div class="p-5 text-center">
-
-                    <h3 class="text-md font-semibold text-slate-800">
-                        {{ $review->name }}
-                    </h3>
-
-                    <p class="text-xs text-slate-500">
-                        {{ $review->designation }}
-                    </p>
-
-                </div>
-
-            </div>
-
             @empty
-                <p class="col-span-4 text-center text-slate-500">
-                    No Video Reviews Available
-                </p>
+
+                {{-- Dummy Slides --}}
+                @for($i=0;$i<3;$i++)
+                    <div class="testimonials-item text-center">
+                        <i class='bx bxs-quote-left'></i>
+
+                        <p>
+                            Amazing transformation experience. Highly recommend this coaching program!
+                        </p>
+
+                        <div class="mb-3 text-warning">
+                            ★★★★★
+                        </div>
+
+                        <div class="content">
+                            <img src="https://via.placeholder.com/80"
+                                 class="rounded-circle mb-3"
+                                 width="80" height="80">
+
+                            <h3>Happy Client</h3>
+                            <span>Fitness Member</span>
+                        </div>
+                    </div>
+                @endfor
+
             @endforelse
 
         </div>
 
     </div>
-
-</section>
-
-{{-- LIGHTBOX MODAL --}}
-<div id="videoModal"
-     class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50 opacity-0 transition-opacity duration-300">
-
-    <div class="absolute inset-0 flex items-center justify-center px-4">
-
-        <div id="videoBox"
-             class="relative w-full max-w-4xl transform scale-90 opacity-0 transition-all duration-300">
-
-            {{-- Close Button --}}
-            <button onclick="closeVideo()"
-                    class="absolute -top-10 right-0 text-white text-3xl hover:text-emerald-400 transition">
-                ✕
-            </button>
-
-            {{-- Video --}}
-            <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
-                <iframe id="youtubeFrame"
-                        class="w-full h-full"
-                        src=""
-                        frameborder="0"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen>
-                </iframe>
-            </div>
-
-        </div>
-
-    </div>
-
 </div>
 
-<script>
+<div class="brand-area ptb-100 border-top">
+    <div class="container">
 
-function openVideo(videoId) {
-
-    const modal = document.getElementById('videoModal');
-    const box = document.getElementById('videoBox');
-
-    modal.classList.remove('hidden');
-
-    setTimeout(() => {
-        modal.classList.remove('opacity-0');
-        box.classList.remove('scale-90', 'opacity-0');
-        box.classList.add('scale-100', 'opacity-100');
-    }, 10);
-
-    document.getElementById('youtubeFrame').src =
-        "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-}
-
-function closeVideo() {
-
-    const modal = document.getElementById('videoModal');
-    const box = document.getElementById('videoBox');
-
-    modal.classList.add('opacity-0');
-    box.classList.remove('scale-100', 'opacity-100');
-    box.classList.add('scale-90', 'opacity-0');
-
-    setTimeout(() => {
-        modal.classList.add('hidden');
-        document.getElementById('youtubeFrame').src = "";
-    }, 300);
-}
-
-// ESC Close
-document.addEventListener("keydown", function(e){
-    if(e.key === "Escape") closeVideo();
-});
-
-// Outside Click Close
-document.getElementById('videoModal').addEventListener("click", function(e){
-    if(e.target === this) closeVideo();
-});
-
-</script>
-
-
-{{-- TESTIMONIALS SECTION --}}
-<section id="testimonials" class="py-24 bg-emerald-50">
-
-    <div class="max-w-7xl mx-auto px-6">
-
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800">
-                What Our Clients Say
-            </h2>
-            <p class="mt-4 text-slate-600">
-                Real feedback from people who transformed their lives.
-            </p>
+        <div class="section-title text-center mb-5">
+            <h2>Trusted By</h2>
+            <p>Partner brands and trusted collaborations.</p>
         </div>
 
-        <div class="swiper testimonialSwiper">
-            <div class="swiper-wrapper">
+        <div class="brand-slider owl-carousel owl-theme">
 
-                @forelse($testimonials as $testimonial)
+            @forelse($brands as $brand)
 
-                <div class="swiper-slide">
-                    <div class="testimonial-card bg-white rounded-2xl shadow-md p-8 text-center transition-all duration-500">
-
-                        {{-- Image --}}
-                        <div class="mb-5">
-                            <img src="{{ !empty($testimonial->image)
-                                ? asset('storage/'.$testimonial->image)
-                                : 'https://via.placeholder.com/100' }}"
-                                 class="mx-auto h-20 w-20 rounded-full object-cover shadow-lg">
-                        </div>
-
-                        {{-- Name --}}
-                        <h3 class="text-lg font-semibold text-slate-800">
-                            {{ $testimonial->name ?? 'Happy Client' }}
-                        </h3>
-
-                        <p class="text-xs text-slate-500 mb-4">
-                            {{ $testimonial->designation ?? 'Fitness Member' }}
-                        </p>
-
-                        {{-- Rating --}}
-                        <div class="flex justify-center mb-4">
-                            @for($i=1;$i<=5;$i++)
-                                <span class="text-lg {{ $i <= ($testimonial->rating ?? 5) ? 'text-yellow-400' : 'text-gray-300' }}">
-                                    ★
-                                </span>
-                            @endfor
-                        </div>
-
-                        {{-- Message --}}
-                        <p class="text-sm text-slate-600 leading-relaxed">
-                            {{ \Illuminate\Support\Str::limit($testimonial->message ?? 'This program completely changed my lifestyle and helped me achieve my goals!', 140) }}
-                        </p>
-
-                    </div>
-                </div>
-
-                @empty
-
-                {{-- Dummy Slides --}}
-                @for($i=0;$i<3;$i++)
-                <div class="swiper-slide">
-                    <div class="testimonial-card bg-white rounded-2xl shadow-md p-8 text-center">
-
-                        <img src="https://via.placeholder.com/100"
-                             class="mx-auto h-20 w-20 rounded-full shadow-lg mb-5">
-
-                        <h3 class="text-lg font-semibold">
-                            Happy Client
-                        </h3>
-
-                        <p class="text-xs text-slate-500 mb-4">
-                            Fitness Member
-                        </p>
-
-                        <div class="text-yellow-400 text-lg mb-4">
-                            ★★★★★
-                        </div>
-
-                        <p class="text-sm text-slate-600">
-                            Amazing transformation experience. Highly recommend this coaching program!
-                        </p>
-
-                    </div>
-                </div>
-                @endfor
-
-                @endforelse
-
-            </div>
-
-            <div class="swiper-pagination mt-10"></div>
-        </div>
-
-    </div>
-
-</section>
-
-<style>
-.testimonialSwiper {
-    padding-bottom: 80px;
-}
-
-.testimonialSwiper .swiper-slide {
-    opacity: 0.5;
-    transform: scale(0.9);
-    transition: all 0.4s ease;
-}
-
-.testimonialSwiper .swiper-slide-active {
-    opacity: 1;
-    transform: scale(1.05);
-    z-index: 10;
-}
-
-.testimonialSwiper .swiper-slide-active .testimonial-card {
-    box-shadow: 0 25px 60px rgba(16, 185, 129, 0.25);
-}
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    new Swiper(".testimonialSwiper", {
-        slidesPerView: 1,
-        centeredSlides: true,
-        loop: true,
-        spaceBetween: 30,
-        speed: 800,
-
-        autoplay: {
-            delay: 3500,
-            disableOnInteraction: false,
-        },
-
-        pagination: {
-            el: ".testimonialSwiper .swiper-pagination",
-            clickable: true,
-        },
-
-        breakpoints: {
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
-        }
-    });
-
-});
-</script>
-
-{{-- BRANDS SECTION --}}
-<section id="brands" class="py-20 bg-white border-t">
-
-    <div class="max-w-7xl mx-auto px-6">
-
-        <div class="text-center mb-14">
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-800">
-                Trusted By
-            </h2>
-            <p class="mt-3 text-slate-600 text-sm">
-                Partner brands and trusted collaborations.
-            </p>
-        </div>
-
-        <div class="swiper brandSwiper">
-            <div class="swiper-wrapper items-center">
-
-                @forelse($brands as $brand)
-
-                <div class="swiper-slide flex justify-center">
+                <div class="brand-item text-center">
                     <img src="{{ !empty($brand->logo)
                         ? asset('storage/'.$brand->logo)
                         : 'https://via.placeholder.com/150x80' }}"
-                         class="h-16 object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                         class="img-fluid brand-logo">
                 </div>
 
-                @empty
+            @empty
 
-                {{-- Dummy Logos --}}
                 @for($i=0;$i<6;$i++)
-                <div class="swiper-slide flex justify-center">
-                    <img src="https://via.placeholder.com/150x80"
-                         class="h-16 object-contain grayscale opacity-70">
-                </div>
+                    <div class="brand-item text-center">
+                        <img src="https://via.placeholder.com/150x80"
+                             class="img-fluid brand-logo">
+                    </div>
                 @endfor
 
-                @endforelse
+            @endforelse
 
-            </div>
         </div>
 
     </div>
-
-</section>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    new Swiper(".brandSwiper", {
-        slidesPerView: 2,
-        spaceBetween: 40,
-        loop: true,
-        speed: 2000,
-
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-
-        breakpoints: {
-            640: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
-            1024: { slidesPerView: 5 }
-        }
-    });
-
-});
-</script>
-
-<style>
-.brandSwiper .swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-</style>
+</div>
 
 @endsection
