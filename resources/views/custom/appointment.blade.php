@@ -18,7 +18,7 @@
         <!-- Inner Banner End -->
 
         <!-- Work Area -->
-        <div class="work-area pt-100 pb-70">
+             <div class="work-area pt-100 pb-70">
             <div class="container">
                 <div class="section-title text-center">
                     <span>How IT Works</span>
@@ -30,8 +30,9 @@
                             <div class="content">
                                 <i class="flaticon-contact-book"></i>
                                 <h3>Contact Us</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt </p>
-                            </div>
+<p>
+Reach out to us and start your personalized wellness journey today.
+</p>                            </div>
                         </div>
                     </div>
 
@@ -40,8 +41,9 @@
                             <div class="content">
                                 <i class="flaticon-calendar-1"></i>
                                 <h3>Appointment</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt </p>
-                            </div>
+<p>
+Book your consultation session at your convenient date and time.
+</p>                            </div>
                         </div>
                     </div>
 
@@ -50,8 +52,9 @@
                             <div class="content">
                                 <i class="flaticon-research"></i>
                                 <h3>Analysis</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt </p>
-                            </div>
+<p>
+We assess your health goals and create a tailored action plan.
+</p>                            </div>
                         </div>
                     </div>
 
@@ -60,8 +63,9 @@
                             <div class="content">
                                 <i class="flaticon-happiness"></i>
                                 <h3>Happy Life</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt </p>
-                            </div>
+<p>
+Achieve lasting fitness results and enjoy a healthier lifestyle.
+</p>                            </div>
                         </div>
                     </div>
                 </div>

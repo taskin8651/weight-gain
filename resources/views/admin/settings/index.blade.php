@@ -52,6 +52,16 @@
                         class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500">
                 </div>
 
+                {{-- WhatsApp --}}
+                <div>
+                    <label class="block text-sm font-semibold mb-1">
+                        WhatsApp
+                    </label>
+                    <input type="text" name="whatsapp"
+                        value="{{ old('whatsapp', $setting->whatsapp ?? '') }}"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500">
+                </div>
+
                 {{-- Logo --}}
                 <div>
                     <label class="block text-sm font-semibold mb-1">

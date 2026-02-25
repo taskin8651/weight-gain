@@ -32,21 +32,23 @@
                                 </p>
                             </div>
 
-                            <div class="row">
+                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="about-content-item">
                                         <i class="flaticon-diet"></i>
                                         <h3>Personalized Nutrition Plan</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </div>
+<p>
+Customized meal plans designed to support your health and fitness goals.
+</p>                                    </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="about-content-item">
                                         <i class="flaticon-exercise"></i>
                                         <h3>Personalized Exercises Plan</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </div>
+<p>
+Tailored workout routines created to improve strength and overall fitness.
+</p>                                    </div>
                                 </div>
                             </div>
 

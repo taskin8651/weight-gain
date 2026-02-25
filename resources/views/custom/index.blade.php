@@ -50,8 +50,9 @@
                         <div class="banner-bottom-item">
                             <i class="flaticon-calendar-1"></i>
                             <h3>Daily Exercise</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
-                            <a href="about.html" class="learn-btn">Learn More</a>
+<p>
+Daily exercise is the foundation of a healthy and active lifestyle. Regular movement improves metabolism, strengthens muscles, boosts energy levels, and enhances overall well-being. It does not require extreme workouts or long hours at the gym; even simple activities like walking, stretching, or light strength training can make a meaningful difference. When combined with proper nutrition, daily exercise supports weight management, improves stamina, and builds long-term fitness habits. Consistency is the key to achieving sustainable results and maintaining a balanced, healthier life.
+</p>                            <a href="{{ route('programs.page') }}" class="learn-btn">Learn More</a>
                             <div class="top-shape">
                                 <img src="assets/images/shape/shape5.png" alt="Images">
                                 <img src="assets/images/shape/shape6.png" alt="Images">
@@ -63,8 +64,9 @@
                         <div class="banner-bottom-item">
                             <i class="flaticon-diet"></i>
                             <h3>Natural Foods</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
-                            <a href="about.html" class="learn-btn">Learn More</a>
+<p>
+Natural foods play a vital role in maintaining a balanced and healthy lifestyle. Fresh fruits, vegetables, whole grains, nuts, and lean proteins provide essential nutrients that nourish the body and support overall wellness. Choosing minimally processed foods helps improve digestion, boost immunity, and maintain stable energy levels throughout the day. A diet rich in natural ingredients reduces the risk of lifestyle-related diseases and promotes long-term health. Making mindful food choices every day creates a strong nutritional foundation for a vibrant and active life.
+</p>                            <a href="{{ route('programs.page') }}" class="learn-btn">Learn More</a>
                             <div class="top-shape">
                                 <img src="assets/images/shape/shape5.png" alt="Images">
                                 <img src="assets/images/shape/shape6.png" alt="Images">
@@ -76,8 +78,9 @@
                         <div class="banner-bottom-item">
                             <i class="flaticon-plan"></i>
                             <h3>Nutrition Plans</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
-                            <a href="about.html" class="learn-btn">Learn More</a>
+<p>
+A structured nutrition plan is essential for achieving lasting health and fitness goals. Personalized meal planning ensures the right balance of proteins, carbohydrates, healthy fats, vitamins, and minerals required for optimal body function. Proper nutrition supports weight management, enhances metabolism, improves recovery, and increases daily energy levels. Instead of restrictive dieting, a well-designed plan focuses on sustainable eating habits that fit your lifestyle. With the right guidance and consistency, nutrition becomes a powerful tool for long-term wellness and overall physical transformation.
+</p>                            <a href="{{ route('programs.page') }}" class="learn-btn">Learn More</a>
                             <div class="top-shape">
                                 <img src="assets/images/shape/shape5.png" alt="Images">
                                 <img src="assets/images/shape/shape6.png" alt="Images">
@@ -108,20 +111,22 @@
                                     <div class="about-content-item">
                                         <i class="flaticon-diet"></i>
                                         <h3>Personalized Nutrition Plan</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </div>
+<p>
+Customized meal plans designed to support your health and fitness goals.
+</p>                                    </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="about-content-item">
                                         <i class="flaticon-exercise"></i>
                                         <h3>Personalized Exercises Plan</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </div>
+<p>
+Tailored workout routines created to improve strength and overall fitness.
+</p>                                    </div>
                                 </div>
                             </div>
 
-                            <a href="about.html" class="default-btn">Read More</a>
+                            <a href="{{ route('about.page') }}" class="default-btn">Read More</a>
                         </div>
                     </div>
 
@@ -199,8 +204,9 @@
                             <div class="content">
                                 <i class="flaticon-contact-book"></i>
                                 <h3>Contact Us</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt </p>
-                            </div>
+<p>
+Reach out to us and start your personalized wellness journey today.
+</p>                            </div>
                         </div>
                     </div>
 
@@ -209,8 +215,9 @@
                             <div class="content">
                                 <i class="flaticon-calendar-1"></i>
                                 <h3>Appointment</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt </p>
-                            </div>
+<p>
+Book your consultation session at your convenient date and time.
+</p>                            </div>
                         </div>
                     </div>
 
@@ -219,8 +226,9 @@
                             <div class="content">
                                 <i class="flaticon-research"></i>
                                 <h3>Analysis</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt </p>
-                            </div>
+<p>
+We assess your health goals and create a tailored action plan.
+</p>                            </div>
                         </div>
                     </div>
 
@@ -229,8 +237,9 @@
                             <div class="content">
                                 <i class="flaticon-happiness"></i>
                                 <h3>Happy Life</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt </p>
-                            </div>
+<p>
+Achieve lasting fitness results and enjoy a healthier lifestyle.
+</p>                            </div>
                         </div>
                     </div>
                 </div>

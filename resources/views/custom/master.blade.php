@@ -57,22 +57,22 @@ $settings = App\Models\Setting::first();
                                     <ul>
                                         <li class="title">Follow us :</li>
                                         <li>
-                                            <a href="{{ $settings->facebook_url ?? '#' }}" target="_blank">
+                                            <a href="{{ $settings->facebook ?? '#' }}" target="_blank">
                                                 <i class='bx bxl-facebook'></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ $settings->instagram_url ?? '#' }}" target="_blank">
+                                            <a href="{{ $settings->instagram ?? '#' }}" target="_blank">
                                                 <i class='bx bxl-instagram'></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ $settings->twitter_url ?? '#' }}" target="_blank">
+                                            <a href="{{ $settings->twitter ?? '#' }}" target="_blank">
                                                 <i class='bx bxl-twitter' ></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ $settings->youtube_url ?? '#' }}" target="_blank">
+                                            <a href="{{ $settings->youtube ?? '#' }}" target="_blank">
                                                 <i class='bx bxl-youtube'></i>
                                             </a>
                                         </li>
@@ -98,7 +98,7 @@ $settings = App\Models\Setting::first();
                          <div class="logo">
                             <a href="{{ route('home') }}">
                                 <img src="{{ asset('storage/'.$settings->logo) }}" class="logo-one" alt="Logo">
-                                <img src="{{ asset('storage/'.$settings->logo_white) }}" class="logo-two" alt="Logo">
+                                <img src="{{ asset('storage/'.$settings->logo) }}" class="logo-two" alt="Logo">
                             </a>
                         </div>
                     </div>
@@ -117,21 +117,21 @@ $settings = App\Models\Setting::first();
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item">
-                                    <a href="{{ route('home') }}" class="nav-link active">
+                                    <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
                                         Home 
                                     </a>
                                     
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('about.page') }}" class="nav-link">
+                                    <a href="{{ route('about.page') }}" class="nav-link {{ request()->routeIs('about.page') ? 'active' : '' }}">
                                         About Us
                                     </a>
                                     
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('programs.page') }}" class="nav-link">
+                                    <a href="{{ route('programs.page') }}" class="nav-link {{ request()->routeIs('programs.page') ? 'active' : '' }}">
                                         Courses
                                     </a>
                                   
@@ -139,21 +139,23 @@ $settings = App\Models\Setting::first();
 
 
                                 <li class="nav-item">
-                                    <a href="{{ route('video-reviews.page') }}" class="nav-link">
+                                    <a href="{{ route('video-reviews.page') }}" class="nav-link {{ request()->routeIs('video-reviews.page') ? 'active' : '' }}">
                                         Customer Reviews
                                     </a>
                                 
                                 </li>
 
-                                <!-- <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Blog
-                                        <i class='bx bx-chevron-down'></i>
+                                <li class="nav-item">
+                                    <a href="{{ route('transformations.page') }}" class="nav-link {{ request()->routeIs('transformations.page') ? 'active' : '' }}">
+                                        Transformation
                                     </a>
-                                     -->
+                                
+                                </li>
+
+                                
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('contact.page') }}" class="nav-link">
+                                    <a href="{{ route('contact.page') }}" class="nav-link {{ request()->routeIs('contact.page') ? 'active' : '' }}">
                                         Contact Us
                                     </a>
                                 </li>
@@ -199,7 +201,7 @@ $settings = App\Models\Setting::first();
                                     </a>
                                 </div>
                                 <p>
-                                    {{ $settings->description ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }}
+                                    {{ $settings->footer_text ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }}
                                 </p>
                                 <ul class="social-link">
                                     <li>
@@ -290,7 +292,7 @@ $settings = App\Models\Setting::first();
                         </div>
 
                         <div class="col-lg-4 col-sm-6">
-                           
+                            <iframe src="https://www.google.com/maps?q={{ urlencode($settings->address ?? '') }}&output=embed"></iframe>
                         </div>
                     </div>
                 </div>
@@ -328,6 +330,38 @@ $settings = App\Models\Setting::first();
             </div>
         </div>
         <!-- Modal End -->
+
+        <!-- WhatsApp Floating Button -->
+<a href="https://wa.me/{{ $settings->whatsapp ?? 'XXXXXXXXXX' }}?text=Hello%20I%20want%20more%20information"
+   class="whatsapp-float"
+   target="_blank">
+    <i class="bx bxl-whatsapp"></i>
+</a>
+<style>
+    .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 25px;
+    right: 25px;
+    background-color: #72ae44;
+    color: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    background-color: #72ae44;
+    transform: scale(1.1);
+}
+</style>
         
         <!--=== Link Of JS Files ===-->
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
