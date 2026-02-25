@@ -272,7 +272,7 @@ $settings = App\Models\Setting::first();
                         <div class="col-lg-6 col-sm-6">
                             <div class="footer-widget ps-5">
                                 <div class="row">
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-7">
                                 <h3>Information</h3>
                                 <ul class="footer-contact">
                                     <li class="mb-0 pb-0">
@@ -291,7 +291,7 @@ $settings = App\Models\Setting::first();
                                 </ul>
                                 </div>
 
-                                <div class="col-lg-7">
+                                <div class="col-lg-6">
                                     <h3>Our Location</h3>
                             <iframe src="https://www.google.com/maps?q={{ urlencode($settings->address ?? '') }}&output=embed"></iframe>
                         </div>
