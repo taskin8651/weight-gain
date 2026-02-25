@@ -26,8 +26,8 @@ $settings = App\Models\Setting::first();
         <link rel="stylesheet" href="{{ asset('assets/css/theme-dark.css') }}">
        
         <!--=== Title & Favicon ===-->
-        <title>Arrola - Nutrition & Healthy Diet Recipe HTML Template</title>
-        <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
+        <title>{{ $settings->site_name ?? config('app.name') }}</title>
+        <link rel="icon" type="image/png" href="{{ asset('storage/'.$settings->favicon) }}">
         
     </head>
     <body>
@@ -291,7 +291,7 @@ $settings = App\Models\Setting::first();
                                 </ul>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-5">
                                     <h3>Our Location</h3>
                             <iframe src="https://www.google.com/maps?q={{ urlencode($settings->address ?? '') }}&output=embed"></iframe>
                         </div>
