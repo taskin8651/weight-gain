@@ -272,33 +272,27 @@ $settings = App\Models\Setting::first();
                         <div class="col-lg-6 col-sm-6">
                             <div class="footer-widget ps-5">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-5">
                                 <h3>Information</h3>
                                 <ul class="footer-contact">
-                                    <li>
-                                        Phone:
-                                        <span>
-                                            <a href="tel:{{ $settings->phone ?? '+8245678924' }}">{{ $settings->phone ?? '+8245678924' }}</a><br>
-                                            <a href="tel:{{ $settings->phone2 ?? '+8245668964' }}">{{ $settings->phone ?? '+8245668964' }}</a>
-                                        </span>
+                                    <li class="mb-0 pb-0">
+                                            Phone: <br>
+                                            <a href="tel:{{ $settings->phone ?? '+8245678924' }} " class="text-white">{{ $settings->phone ?? '+8245678924' }}</a><br>
                                     </li> 
-                                    <li>
-                                        Email:
-                                        <span>
-                                            <a href="mailto:{{ $settings->email ?? '[email protected]' }}">{{ $settings->email ?? '[email protected]' }}</a><br>
-                                            <a href="mailto:{{ $settings->email2 ?? '[email protected]' }}">{{ $settings->email ?? '[email protected]' }}</a>
-                                        </span>
+                                    <li class="mb-0 pb-0">
+                                        Email:  <br>
+                                            <a href="mailto:{{ $settings->email ?? '[email protected]' }}" class="text-white">{{ $settings->email ?? '[email protected]' }}</a><br>
                                     </li> 
-                                     <li>
-                                        Address:
-                                        <span>
-                                            {{ $settings->address ?? '5ut, Stamford South, New Zeland' }}
-                                        </span>
+                                     <li class="mb-0 pb-0">
+                                        Address: <br>
+
+                                           <a href="" class="text-white"> {{ $settings->address ?? '5ut, Stamford South, New Zeland' }}</a>
                                     </li> 
                                 </ul>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-7">
+                                    <h3>Our Location</h3>
                             <iframe src="https://www.google.com/maps?q={{ urlencode($settings->address ?? '') }}&output=embed"></iframe>
                         </div>
                             </div>
