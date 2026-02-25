@@ -235,27 +235,33 @@ $settings = App\Models\Setting::first();
                                 <h3>Useful Links</h3>
                                 <ul class="footer-list">
                                     <li>
-                                        <a href="{{ route('home') }}" target="_blank">
+                                        <a href="{{ route('home') }}" target="">
                                             Home
                                         </a>
                                     </li> 
                                     <li>
-                                        <a href="{{ route('about.page') }}" target="_blank">
+                                        <a href="{{ route('about.page') }}" target="">
                                             About Us
                                         </a>
                                     </li> 
                                     <li>
-                                        <a href="{{ route('programs.page') }}" target="_blank">
+                                        <a href="{{ route('programs.page') }}" target="">
                                             Courses
                                         </a>
                                     </li> 
                                     <li>
-                                        <a href="{{ route('video-reviews.page') }}" target="_blank">
+                                        <a href="{{ route('video-reviews.page') }}" target="">
                                             Customer Reviews    
                                         </a>
                                     </li> 
+
+                                        <li>
+                                            <a href="{{ route('transformations.page') }}" target="">
+                                                Transformation    
+                                            </a>
+                                        </li>
                                     <li>
-                                        <a href="{{ route('contact.page') }}" target="_blank">
+                                        <a href="{{ route('contact.page') }}" target="">
                                             Contact Us     
                                         </a>
                                     </li> 
@@ -263,8 +269,10 @@ $settings = App\Models\Setting::first();
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-6 col-sm-6">
                             <div class="footer-widget ps-5">
+                                <div class="row">
+                                    <div class="col-lg-6">
                                 <h3>Information</h3>
                                 <ul class="footer-contact">
                                     <li>
@@ -288,12 +296,15 @@ $settings = App\Models\Setting::first();
                                         </span>
                                     </li> 
                                 </ul>
+                                </div>
+
+                                <div class="col-lg-6">
+                            <iframe src="https://www.google.com/maps?q={{ urlencode($settings->address ?? '') }}&output=embed"></iframe>
+                        </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-sm-6">
-                            <iframe src="https://www.google.com/maps?q={{ urlencode($settings->address ?? '') }}&output=embed"></iframe>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
