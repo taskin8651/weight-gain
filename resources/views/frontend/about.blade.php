@@ -77,25 +77,6 @@ Tailored workout routines created to improve strength and overall fitness.
 <div class="container">
 <div class="row align-items-center">
 
-{{-- LEFT CONTENT --}}
-<div class="col-lg-6">
-<div class="about-content-two">
-
-<div class="section-title">
-<span>About Us</span>
-
-<h2>
-{{ $about->title ?? 'Change Your Life in the next 90 Days of Practice' }}
-</h2>
-
-<p>
-{{ $about->description ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }}
-</p>
-
-</div>
-
-{{-- OTHER ABOUT ITEMS --}}
-<div class="row">
 
 @foreach($aboutItems as $item)
 
