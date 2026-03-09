@@ -16,12 +16,13 @@
                class="w-full px-4 py-2 border rounded-lg">
     </div>
 
-    <div>
-        <label class="block text-sm font-semibold mb-1">YouTube URL</label>
-        <input type="url" name="youtube_url"
-               value="{{ old('youtube_url', $video_review->youtube_url ?? '') }}"
-               class="w-full px-4 py-2 border rounded-lg">
-    </div>
+   <div>
+    <label class="block text-sm font-semibold mb-1">YouTube / Instagram URL</label>
+    <input type="url" name="youtube_url"
+           value="{{ old('youtube_url', $video_review->youtube_url ?? '') }}"
+           class="w-full px-4 py-2 border rounded-lg"
+           placeholder="Paste YouTube or Instagram Reel URL">
+</div>
 
     <div>
         <label class="block text-sm font-semibold mb-1">Thumbnail</label>

@@ -21,29 +21,28 @@ class VideoReviewController extends Controller
         return view('admin.video_reviews.create');
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name'        => 'required|string|max:255',
-            'designation' => 'nullable|string|max:255',
-            'youtube_url' => 'required|url',
-            'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            // 'is_active'   => 'nullable|boolean',
-        ]);
+   public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name'        => 'required|string|max:255',
+        'designation' => 'nullable|string|max:255',
+        'youtube_url' => 'required|url', // YouTube ya Instagram dono chalega
+        'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
 
-        if ($request->hasFile('thumbnail')) {
-            $validated['thumbnail'] =
-                $request->file('thumbnail')->store('video_reviews', 'public');
-        }
-
-        $validated['is_active'] = $request->has('is_active') ? 1 : 0;
-
-        VideoReview::create($validated);
-
-        return redirect()
-            ->route('admin.video-reviews.index')
-            ->with('success', 'Video Review Created Successfully');
+    if ($request->hasFile('thumbnail')) {
+        $validated['thumbnail'] =
+            $request->file('thumbnail')->store('video_reviews', 'public');
     }
+
+    $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+
+    VideoReview::create($validated);
+
+    return redirect()
+        ->route('admin.video-reviews.index')
+        ->with('success', 'Video Review Created Successfully');
+}
 
     public function edit(VideoReview $video_review)
     {
