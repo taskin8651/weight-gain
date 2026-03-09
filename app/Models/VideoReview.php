@@ -10,6 +10,7 @@ class VideoReview extends Model
         'name',
         'designation',
         'youtube_url',
+        'video',
         'thumbnail',
         'is_active',
     ];
@@ -17,6 +18,8 @@ class VideoReview extends Model
     // Extract YouTube ID
     public function getYoutubeIdAttribute()
     {
+        if (!$this->youtube_url) return null;
+
         preg_match(
             '/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\&\?\/]+)/',
             $this->youtube_url,
@@ -24,5 +27,11 @@ class VideoReview extends Model
         );
 
         return $matches[1] ?? null;
+    }
+
+    // Check if Instagram
+    public function getIsInstagramAttribute()
+    {
+        return str_contains($this->youtube_url, 'instagram.com');
     }
 }

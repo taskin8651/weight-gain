@@ -25,7 +25,7 @@
                 <tr>
                     <th class="px-4 py-3 text-left">Thumbnail</th>
                     <th class="px-4 py-3 text-left">Name</th>
-                    <th class="px-4 py-3 text-left">YouTube</th>
+                    <th class="px-4 py-3 text-left">Video</th>
                     <th class="px-4 py-3 text-center">Status</th>
                     <th class="px-4 py-3 text-center">Actions</th>
                 </tr>
@@ -33,33 +33,62 @@
 
             <tbody class="divide-y">
                 @forelse($reviews as $review)
+
                 <tr>
 
-                   @php
-$youtubeId = null;
+                    <td class="px-4 py-3">
 
-if ($review->youtube_url) {
-    preg_match('/(youtu\.be\/|v=)([^&]+)/', $review->youtube_url, $matches);
-    $youtubeId = $matches[2] ?? null;
-}
-@endphp
+                        {{-- Custom Thumbnail --}}
+                        @if($review->thumbnail)
 
-<td class="px-4 py-3">
-    <img src="{{ $review->thumbnail
-        ? asset('storage/'.$review->thumbnail)
-        : ($youtubeId ? 'https://img.youtube.com/vi/'.$youtubeId.'/hqdefault.jpg' : '') }}"
-         class="h-14 w-24 object-cover rounded">
-</td>
+                            <img src="{{ asset('storage/'.$review->thumbnail) }}"
+                                 class="h-14 w-24 object-cover rounded">
+
+                        {{-- Uploaded Video --}}
+                        @elseif($review->video)
+
+                            <video class="h-14 w-24 object-cover rounded">
+                                <source src="{{ asset('storage/'.$review->video) }}">
+                            </video>
+
+                        {{-- YouTube --}}
+                        @elseif($review->youtube_id)
+
+                            <img src="https://img.youtube.com/vi/{{ $review->youtube_id }}/hqdefault.jpg"
+                                 class="h-14 w-24 object-cover rounded">
+
+                        {{-- Instagram --}}
+                        @elseif(Str::contains($review->youtube_url,'instagram.com'))
+
+                            <img src="https://via.placeholder.com/120x70?text=Instagram"
+                                 class="h-14 w-24 object-cover rounded">
+
+                        @endif
+
+                    </td>
 
                     <td class="px-4 py-3">
                         {{ $review->name }}
                     </td>
 
                     <td class="px-4 py-3">
-                        <a href="{{ $review->youtube_url }}" target="_blank"
+
+                        @if($review->youtube_url)
+                        <a href="{{ $review->youtube_url }}"
+                           target="_blank"
                            class="text-indigo-600 underline">
                             View
                         </a>
+                        @endif
+
+                        @if($review->video)
+                        <a href="{{ asset('storage/'.$review->video) }}"
+                           target="_blank"
+                           class="text-indigo-600 underline">
+                            View Video
+                        </a>
+                        @endif
+
                     </td>
 
                     <td class="px-4 py-3 text-center">
@@ -82,6 +111,7 @@ if ($review->youtube_url) {
                               onsubmit="return confirm('Delete this review?')">
                             @csrf
                             @method('DELETE')
+
                             <button class="px-3 py-1 bg-red-600 text-white text-xs rounded">
                                 Delete
                             </button>
@@ -90,13 +120,17 @@ if ($review->youtube_url) {
                     </td>
 
                 </tr>
+
                 @empty
+
                 <tr>
                     <td colspan="5" class="text-center py-6">
                         No Reviews Found
                     </td>
                 </tr>
+
                 @endforelse
+
             </tbody>
 
         </table>
