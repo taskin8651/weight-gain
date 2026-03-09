@@ -99,8 +99,8 @@ Tailored workout routines created to improve strength and overall fitness.
 <div class="col-lg-6 pe-0">
     <div class="about-img">
         
-        <img src="{{ !empty($about->image)
-        ? asset('storage/'.$about->image)
+        <img src="{{ !empty($item->image)
+        ? asset('storage/'.$item->image)
         : asset('assets/images/about/about-img1.png') }}"
         alt="About Image">
         
