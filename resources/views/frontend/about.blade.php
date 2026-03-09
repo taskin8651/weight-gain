@@ -93,12 +93,6 @@ Tailored workout routines created to improve strength and overall fitness.
 </div>
 
 
-</div>
-
-
-
-</div>
-</div>
 
 
 {{-- RIGHT IMAGE --}}
