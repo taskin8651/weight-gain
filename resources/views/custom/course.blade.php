@@ -23,6 +23,7 @@
         <div class="section-title text-center">
             <span>Our Courses</span>
             <h2>Professional Diet & Nutrition Programs</h2>
+            <h5>Discover your wings with Dr. Reshma Maniar (Kardekar)</h5>
         </div>
 
         <div class="row pt-45 justify-content-center">
