@@ -72,6 +72,79 @@ Tailored workout routines created to improve strength and overall fitness.
                 <img src="assets/images/shape/shape3.png" alt="About Images">
             </div>
         </div>
+
+        <div class="about-area-two pb-70">
+<div class="container">
+<div class="row align-items-center">
+
+{{-- LEFT CONTENT --}}
+<div class="col-lg-6">
+<div class="about-content-two">
+
+<div class="section-title">
+<span>About Us</span>
+
+<h2>
+{{ $about->title ?? 'Change Your Life in the next 90 Days of Practice' }}
+</h2>
+
+<p>
+{{ $about->description ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }}
+</p>
+
+</div>
+
+{{-- OTHER ABOUT ITEMS --}}
+<div class="row">
+
+@foreach($aboutItems as $item)
+
+<div class="col-lg-6">
+<div class="about-content-item">
+
+<i class="flaticon-diet"></i>
+
+<h3>{{ $item->title }}</h3>
+
+<p>{{ $item->description }}</p>
+
+</div>
+</div>
+
+@endforeach
+
+</div>
+
+<a href="{{ route('about') }}" class="default-btn">
+Read More
+</a>
+
+</div>
+</div>
+
+
+{{-- RIGHT IMAGE --}}
+<div class="col-lg-6 pe-0">
+<div class="about-img">
+
+<img src="{{ !empty($about->image)
+? asset('storage/'.$about->image)
+: asset('assets/images/about/about-img1.png') }}"
+alt="About Image">
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="about-shape-two">
+<img src="{{ asset('assets/images/shape/shape2.png') }}" alt="shape">
+<img src="{{ asset('assets/images/shape/shape3.png') }}" alt="shape">
+</div>
+
+</div>
         <!-- About Area Two End -->
 
  <!-- Blog Widget Area -->

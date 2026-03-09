@@ -92,7 +92,8 @@ class FrontendController extends Controller
          $videoReviews = VideoReview::where('is_active',1)
                     ->latest()
                     ->get();
-        return view('frontend.about', compact('about', 'testimonials', 'brands', 'videoReviews'));
+        $abouts = About::where('id', '!=', 1)->get();            
+        return view('frontend.about', compact('about', 'testimonials', 'brands', 'videoReviews', 'abouts'));
     }
 
     public function contact()
