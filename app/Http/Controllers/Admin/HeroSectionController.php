@@ -35,7 +35,7 @@ class HeroSectionController extends Controller
 
         HeroSection::create($data);
 
-        return redirect()->route('hero-sections.index')
+        return redirect()->route('admin.hero-sections.index')
             ->with('success','Hero Section Created Successfully');
     }
 
@@ -59,7 +59,7 @@ class HeroSectionController extends Controller
 
         $hero_section->update($data);
 
-        return redirect()->route('hero-sections.index')
+        return redirect()->route('admin.hero-sections.index')
             ->with('success','Hero Updated Successfully');
     }
 
