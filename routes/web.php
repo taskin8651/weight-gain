@@ -6,6 +6,7 @@ use App\Http\Controllers\Custom\ProgramController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Frontend\AppointmentController;
 use App\Http\Controllers\Frontend\VideoReviewController;
+use App\Http\Controllers\TestimonialController;
 
 
 Route::redirect('/', '/login');
@@ -159,3 +160,8 @@ Route::post('/appointment', [AppointmentController::class,'store'])
     ->name('appointment.page');
 Route::get('/video-reviews', [VideoReviewController::class, 'index'])
     ->name('video-reviews.page');
+
+    Route::get('testimonials', [TestimonialController::class, 'testimonials'])
+    ->name('testimonials.page');
+
+    Route::post('/testimonial-store', [TestimonialController::class, 'store'])->name('testimonial.store');
