@@ -75,10 +75,10 @@ Tailored workout routines created to improve strength and overall fitness.
 
         <div class="about-area-two pb-70">
 <div class="container">
+    @foreach($aboutItems as $item)
 <div class="row align-items-center">
 
 
-@foreach($aboutItems as $item)
 
 <div class="col-lg-6">
 <div class="about-content-item">
@@ -92,7 +92,6 @@ Tailored workout routines created to improve strength and overall fitness.
 </div>
 </div>
 
-@endforeach
 
 </div>
 
@@ -104,17 +103,18 @@ Tailored workout routines created to improve strength and overall fitness.
 
 {{-- RIGHT IMAGE --}}
 <div class="col-lg-6 pe-0">
-<div class="about-img">
-
-<img src="{{ !empty($about->image)
-? asset('storage/'.$about->image)
-: asset('assets/images/about/about-img1.png') }}"
-alt="About Image">
+    <div class="about-img">
+        
+        <img src="{{ !empty($about->image)
+        ? asset('storage/'.$about->image)
+        : asset('assets/images/about/about-img1.png') }}"
+        alt="About Image">
+        
+    </div>
+</div>
 
 </div>
-</div>
-
-</div>
+@endforeach
 </div>
 
 
