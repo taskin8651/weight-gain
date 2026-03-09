@@ -115,9 +115,7 @@ Tailored workout routines created to improve strength and overall fitness.
 
 </div>
 
-<a href="{{ route('about') }}" class="default-btn">
-Read More
-</a>
+
 
 </div>
 </div>
