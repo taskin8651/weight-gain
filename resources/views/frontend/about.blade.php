@@ -52,7 +52,6 @@ Tailored workout routines created to improve strength and overall fitness.
                                 </div>
                             </div>
 
-                            <a href="about.html" class="default-btn">Read More</a>
                         </div>
                     </div>
 
@@ -122,71 +121,92 @@ Tailored workout routines created to improve strength and overall fitness.
 
  <!-- Blog Widget Area -->
       <div class="blog-widget-area pt-100 pb-70">
-    <div class="container">
-        <div class="row">
+<div class="container">
+<div class="row">
 
-            <div class="categories-title mb-4">
-                <h3>Student Reviews</h3>
-            </div>
+<div class="categories-title mb-4">
+<h3>Student Reviews</h3>
+</div>
 
-            <div class="col-lg-12">
-                <div class="row justify-content-center">
+<div class="col-lg-12">
+<div class="row justify-content-center">
 
-                    @forelse($videoReviews as $review)
+@forelse($videoReviews as $review)
 
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="blog-item">
+<div class="col-lg-4 col-md-6 mb-4">
+<div class="blog-item">
 
-                                <div class="video-wrapper">
-                                    <iframe 
-                                        src="https://www.youtube.com/embed/{{ $review->youtube_id }}"
-                                        title="{{ $review->name }}"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
+<div class="video-wrapper">
 
-                                <div class="content text-center mt-3">
-                                    <h5>{{ $review->name }}</h5>
-                                    <span>{{ $review->designation }}</span>
-                                </div>
+{{-- Uploaded Video --}}
+@if(!empty($review->video))
 
-                            </div>
-                        </div>
+<video controls>
+<source src="{{ asset('storage/'.$review->video) }}" type="video/mp4">
+</video>
 
-                    @empty
-                        <div class="col-12 text-center">
-                            <p>No Reviews Available</p>
-                        </div>
-                    @endforelse
+{{-- YouTube Video --}}
+@elseif(!empty($review->youtube_id))
 
+<iframe
+src="https://www.youtube.com/embed/{{ $review->youtube_id }}"
+title="{{ $review->name }}"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
 
-                   
+@endif
 
-                </div>
-            </div>
+</div>
 
-        </div>
-    </div>
+<div class="content text-center mt-3">
+
+<h5>{{ $review->name }}</h5>
+
+@if($review->designation)
+<span>{{ $review->designation }}</span>
+@endif
+
+</div>
+
+</div>
+</div>
+
+@empty
+
+<div class="col-12 text-center">
+<p>No Reviews Available</p>
+</div>
+
+@endforelse
+
+</div>
+</div>
+
+</div>
+</div>
 </div>
 
 <style>
-    .video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 */
-    overflow: hidden;
-    border-radius: 10px;
+    .video-wrapper{
+position:relative;
+width:100%;
+padding-top:56.25%;
+overflow:hidden;
+border-radius:10px;
+background:#000;
 }
 
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
+.video-wrapper iframe,
+.video-wrapper video{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:none;
+object-fit:cover;
 }
 </style>
         <!-- Blog Widget Area End -->
