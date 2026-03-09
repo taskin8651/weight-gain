@@ -35,12 +35,21 @@
                 @forelse($reviews as $review)
                 <tr>
 
-                    <td class="px-4 py-3">
-                        <img src="{{ $review->thumbnail
-                            ? asset('storage/'.$review->thumbnail)
-                            : 'https://img.youtube.com/vi/'.$review->youtube_id.'/hqdefault.jpg' }}"
-                             class="h-14 w-24 object-cover rounded">
-                    </td>
+                   @php
+$youtubeId = null;
+
+if ($review->youtube_url) {
+    preg_match('/(youtu\.be\/|v=)([^&]+)/', $review->youtube_url, $matches);
+    $youtubeId = $matches[2] ?? null;
+}
+@endphp
+
+<td class="px-4 py-3">
+    <img src="{{ $review->thumbnail
+        ? asset('storage/'.$review->thumbnail)
+        : ($youtubeId ? 'https://img.youtube.com/vi/'.$youtubeId.'/hqdefault.jpg' : '') }}"
+         class="h-14 w-24 object-cover rounded">
+</td>
 
                     <td class="px-4 py-3">
                         {{ $review->name }}
