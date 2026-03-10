@@ -18,7 +18,8 @@ class IndexController extends Controller
     public function index()
     {
         $heroes = HeroSection::all();
-        $about = About::latest()->first();
+        $about = About::first();
+         $aboutItems = About::where('id', '!=', 1)->get(); 
         $programs = Program::where('is_active', 1)->latest()->take(6)->get();
          $videoReviews = VideoReview::where('is_active',1)
                         ->latest()
@@ -27,6 +28,6 @@ class IndexController extends Controller
          $brands = Brand::latest()->get();
 
 
-        return view('custom.index', compact('heroes', 'about', 'programs', 'videoReviews', 'testimonials','brands'));
+        return view('custom.index', compact('heroes', 'about', 'programs', 'videoReviews', 'testimonials','brands', 'aboutItems'));
     }
 }

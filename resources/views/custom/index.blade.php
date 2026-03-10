@@ -49,10 +49,11 @@
                     <div class="col-lg-4 col-sm-6">
                         <div class="banner-bottom-item">
                             <i class="flaticon-calendar-1"></i>
-                            <h3>Daily Exercise</h3>
-<p>
-Daily exercise is the foundation of a healthy and active lifestyle. Regular movement improves metabolism, strengthens muscles, boosts energy levels, and enhances overall well-being. It does not require extreme workouts or long hours at the gym; even simple activities like walking, stretching, or light strength training can make a meaningful difference. When combined with proper nutrition, daily exercise supports weight management, improves stamina, and builds long-term fitness habits. Consistency is the key to achieving sustainable results and maintaining a balanced, healthier life.
-</p>                            <a href="{{ route('programs.page') }}" class="learn-btn">Learn More</a>
+                            <h3>Healthy Diet</h3>
+        <p>
+A healthy diet is the cornerstone of a strong and energetic lifestyle. Eating a balanced combination of fresh fruits, vegetables, whole grains, and protein-rich foods provides the body with essential nutrients needed for daily performance. Proper diet helps maintain a healthy weight, supports digestion, improves immunity, and keeps energy levels stable throughout the day. Instead of following extreme restrictions, focusing on natural and nutrient-rich foods builds sustainable eating habits that promote long-term wellness and overall physical health.
+        </p>                  
+  <a href="{{ route('programs.page') }}" class="learn-btn">Learn More</a>
                             <div class="top-shape">
                                 <img src="assets/images/shape/shape5.png" alt="Images">
                                 <img src="assets/images/shape/shape6.png" alt="Images">
@@ -145,6 +146,52 @@ Tailored workout routines created to improve strength and overall fitness.
                 <img src="assets/images/shape/shape2.png" alt="About Images">
                 <img src="assets/images/shape/shape3.png" alt="About Images">
             </div>
+
+
+             <div class="about-area-two pb-70">
+<div class="container">
+    @foreach($aboutItems as $item)
+<div class="row align-items-center">
+
+
+
+<div class="col-lg-6">
+<div class="about-content-item">
+
+<i class="flaticon-diet"></i>
+
+<h3>{{ $item->title }}</h3>
+
+<p>{{ $item->description }}</p>
+
+</div>
+</div>
+
+
+
+
+{{-- RIGHT IMAGE --}}
+<div class="col-lg-6 pe-0">
+    <div class="about-img">
+        
+        <img src="{{ !empty($item->image)
+        ? asset('storage/'.$item->image)
+        : asset('assets/images/about/about-img1.png') }}"
+        alt="About Image">
+        
+    </div>
+</div>
+
+</div>
+@endforeach
+</div>
+
+
+<div class="about-shape-two">
+<img src="{{ asset('assets/images/shape/shape2.png') }}" alt="shape">
+<img src="{{ asset('assets/images/shape/shape3.png') }}" alt="shape">
+</div>
+
         </div>
         <!-- About Area Two End -->
 
