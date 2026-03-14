@@ -145,12 +145,12 @@ $settings = App\Models\Setting::first();
                                 
                                 </li>
 
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="{{ route('transformations.page') }}" class="nav-link {{ request()->routeIs('transformations.page') ? 'active' : '' }}">
                                         Transformation
                                     </a>
                                 
-                                </li>
+                                </li> -->
 
                                 
                                 </li>
@@ -255,11 +255,11 @@ $settings = App\Models\Setting::first();
                                         </a>
                                     </li> 
 
-                                        <li>
+                                        <!-- <li>
                                             <a href="{{ route('transformations.page') }}" target="">
                                                 Transformation    
                                             </a>
-                                        </li>
+                                        </li> -->
                                     <li>
                                         <a href="{{ route('contact.page') }}" target="">
                                             Contact Us     
@@ -307,8 +307,8 @@ $settings = App\Models\Setting::first();
                 <div class="container">
                     <div class="copy-right-text text-center">
                         <p>
-                            Copyright @<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear())</script>  Arrola. All Rights Reserved by 
-                            <a href="https://hibootstrap.com/" target="_blank">HiBootstrap</a> 
+                            Copyright @<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear())</script>  {{ $settings->site_name ?? config('app.name') }}. All Rights Reserved by 
+                            <a href="https://clickmintagency.in/" target="_blank">Cliickmint Agency</a> 
                         </p>
                     </div>
                 </div>

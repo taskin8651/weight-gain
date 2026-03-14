@@ -216,7 +216,7 @@ object-fit:cover;
 
         <div class="section-title text-center mb-5">
             <span>Testimonials</span>
-            <h2>Customer Satisfaction</h2>
+            <h2>Customer Review</h2>
         </div>
 
         <div class="testimonials-slider owl-carousel owl-theme">
