@@ -251,7 +251,7 @@ $settings = App\Models\Setting::first();
                                     </li> 
                                     <li>
                                         <a href="{{ route('video-reviews.page') }}" target="">
-                                            Customer Reviews    
+                                            Student Reviews    
                                         </a>
                                     </li> 
 
