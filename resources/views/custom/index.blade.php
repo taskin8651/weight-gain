@@ -100,7 +100,7 @@ A structured nutrition plan is essential for achieving lasting health and fitnes
                     <div class="col-lg-6">
                         <div class="about-content-two">
                             <div class="section-title">
-                                <span>About Us</span>
+                                <span>Founder</span>
                                 <h2>{{ $about->title ?? 'Change Your Life in the next 90 Days of Practice' }}</h2>
                                 <p>
                                    {{ $about->description ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' }}
@@ -158,6 +158,7 @@ Tailored workout routines created to improve strength and overall fitness.
 
 <i class="flaticon-diet"></i>
 
+<span class="text-muted">Mentor • Director</span>
 <h3>{{ $about2->title ?? 'Personalized Nutrition Plan' }}</h3>
 
 <p>{{ $about2->description ?? 'Customized meal plans designed to support your health and fitness goals.' }}</p>
@@ -189,6 +190,7 @@ alt="About Image">
 
 <i class="flaticon-diet"></i>
 
+<span>Business Head</span>
 <h3>{{ $about3->title ?? 'Personalized Nutrition Plan' }}</h3>
 
 <p>{{ $about3->description ?? 'Customized meal plans designed to support your health and fitness goals.' }}</p>
