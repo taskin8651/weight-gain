@@ -150,49 +150,64 @@ Tailored workout routines created to improve strength and overall fitness.
 
              <div class="about-area-two pb-70">
 <div class="container">
-    @foreach($aboutItems as $item)
+
 <div class="row align-items-center">
-
-
 
 <div class="col-lg-6">
 <div class="about-content-item">
 
 <i class="flaticon-diet"></i>
 
-<h3>{{ $item->title }}</h3>
+<h3>{{ $about2->title }}</h3>
 
-<p>{{ $item->description }}</p>
+<p>{{ $about2->description }}</p>
 
 </div>
 </div>
 
-
-
-
-{{-- RIGHT IMAGE --}}
 <div class="col-lg-6 pe-0">
-    <div class="about-img">
-        
-        <img src="{{ !empty($item->image)
-        ? asset('storage/'.$item->image)
-        : asset('assets/images/about/about-img1.png') }}"
-        alt="About Image">
-        
-    </div>
+<div class="about-img">
+<img src="{{ !empty($about2->image) 
+? asset('storage/'.$about2->image) 
+: asset('assets/images/about/about-img1.png') }}" 
+alt="About Image">
+</div>
 </div>
 
 </div>
-@endforeach
+</div>
 </div>
 
 
-<div class="about-shape-two">
-<img src="{{ asset('assets/images/shape/shape2.png') }}" alt="shape">
-<img src="{{ asset('assets/images/shape/shape3.png') }}" alt="shape">
+<div class="about-area-two pb-70">
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6 order-lg-2">
+<div class="about-content-item">
+
+<i class="flaticon-diet"></i>
+
+<h3>{{ $about3->title }}</h3>
+
+<p>{{ $about3->description }}</p>
+
+</div>
 </div>
 
-        </div>
+<div class="col-lg-6 pe-0 order-lg-1">
+<div class="about-img">
+<img src="{{ !empty($about3->image) 
+? asset('storage/'.$about3->image) 
+: asset('assets/images/about/about-img1.png') }}" 
+alt="About Image">
+</div>
+</div>
+
+</div>
+</div>
+</div>
         <!-- About Area Two End -->
 
 

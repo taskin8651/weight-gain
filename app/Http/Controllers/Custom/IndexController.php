@@ -19,7 +19,8 @@ class IndexController extends Controller
     {
         $heroes = HeroSection::all();
         $about = About::first();
-         $aboutItems = About::where('id', '!=', 1)->get(); 
+        $about2 = About::find(2);
+        $about3 = About::find(3);
         $programs = Program::where('is_active', 1)->latest()->take(6)->get();
          $videoReviews = VideoReview::where('is_active',1)
                         ->latest()
@@ -28,6 +29,6 @@ class IndexController extends Controller
          $brands = Brand::latest()->get();
 
 
-        return view('custom.index', compact('heroes', 'about', 'programs', 'videoReviews', 'testimonials','brands', 'aboutItems'));
+        return view('custom.index', compact('heroes', 'about', 'programs', 'videoReviews', 'testimonials','brands', 'about2', 'about3'));
     }
 }
