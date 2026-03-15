@@ -158,9 +158,9 @@ Tailored workout routines created to improve strength and overall fitness.
 
 <i class="flaticon-diet"></i>
 
-<h3>{{ $about2->title }}</h3>
+<h3>{{ $about2->title ?? 'Personalized Nutrition Plan' }}</h3>
 
-<p>{{ $about2->description }}</p>
+<p>{{ $about2->description ?? 'Customized meal plans designed to support your health and fitness goals.' }}</p>
 
 </div>
 </div>
@@ -189,9 +189,9 @@ alt="About Image">
 
 <i class="flaticon-diet"></i>
 
-<h3>{{ $about3->title }}</h3>
+<h3>{{ $about3->title ?? 'Personalized Nutrition Plan' }}</h3>
 
-<p>{{ $about3->description }}</p>
+<p>{{ $about3->description ?? 'Customized meal plans designed to support your health and fitness goals.' }}</p>
 
 </div>
 </div>
