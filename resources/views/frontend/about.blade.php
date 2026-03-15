@@ -25,14 +25,14 @@
                     <div class="col-lg-6">
                         <div class="about-content-two">
                             <div class="section-title">
-                                <span>About Us</span>
+                                <span>Founder</span>
                                 <h2>{{ $about->title ?? 'Change Your Life in the next 90 Days of Practice' }}</h2>
                                 <p>
                                    {{ $about->description ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' }}
                                 </p>
                             </div>
 
-                             <div class="row">
+                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="about-content-item">
                                         <i class="flaticon-diet"></i>
@@ -52,6 +52,7 @@ Tailored workout routines created to improve strength and overall fitness.
                                 </div>
                             </div>
 
+                            <a href="{{ route('about.page') }}" class="default-btn">Read More</a>
                         </div>
                     </div>
 
@@ -70,52 +71,69 @@ Tailored workout routines created to improve strength and overall fitness.
                 <img src="assets/images/shape/shape2.png" alt="About Images">
                 <img src="assets/images/shape/shape3.png" alt="About Images">
             </div>
-        </div>
 
-        <div class="about-area-two pb-70">
+
+             <div class="about-area-two pb-70">
 <div class="container">
-    @foreach($aboutItems as $item)
+
 <div class="row align-items-center">
 
-
-
 <div class="col-lg-6">
-<div class="about-content-item">
-
+<div class="about-content-two">
+<div class="section-title">
 <i class="flaticon-diet"></i>
 
-<h3>{{ $item->title }}</h3>
+<span >Mentor • Director</span>
+<h3>{{ $about2->title ?? 'Personalized Nutrition Plan' }}</h3>
 
-<p>{{ $item->description }}</p>
-
+<p>{{ $about2->description ?? 'Customized meal plans designed to support your health and fitness goals.' }}</p>
 </div>
 </div>
+</div>
 
-
-
-
-{{-- RIGHT IMAGE --}}
 <div class="col-lg-6 pe-0">
-    <div class="about-img">
-        
-        <img src="{{ !empty($item->image)
-        ? asset('storage/'.$item->image)
-        : asset('assets/images/about/about-img1.png') }}"
-        alt="About Image">
-        
-    </div>
+<div class="about-img">
+<img src="{{ !empty($about2->image) 
+? asset('storage/'.$about2->image) 
+: asset('assets/images/about/about-img1.png') }}" 
+alt="About Image">
+</div>
 </div>
 
 </div>
-@endforeach
+</div>
 </div>
 
 
-<div class="about-shape-two">
-<img src="{{ asset('assets/images/shape/shape2.png') }}" alt="shape">
-<img src="{{ asset('assets/images/shape/shape3.png') }}" alt="shape">
+<div class="about-area-two pb-70">
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6 order-lg-2">
+<div class="about-content-two">
+<div class="section-title">
+<i class="flaticon-diet"></i>
+
+<span>Business Head</span>
+<h3>{{ $about3->title ?? 'Personalized Nutrition Plan' }}</h3>
+
+<p>{{ $about3->description ?? 'Customized meal plans designed to support your health and fitness goals.' }}</p>
+</div>
+</div>
 </div>
 
+<div class="col-lg-6 pe-0 order-lg-1">
+<div class="about-img">
+<img src="{{ !empty($about3->image) 
+? asset('storage/'.$about3->image) 
+: asset('assets/images/about/about-img1.png') }}" 
+alt="About Image">
+</div>
+</div>
+
+</div>
+</div>
 </div>
         <!-- About Area Two End -->
 
