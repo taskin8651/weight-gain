@@ -186,15 +186,15 @@ alt="About Image">
 <div class="row align-items-center">
 
 <div class="col-lg-6 order-lg-2">
-<div class="about-content-item">
-
+<div class="about-content-two">
+<div class="section-title">
 <i class="flaticon-diet"></i>
 
 <span>Business Head</span>
 <h3>{{ $about3->title ?? 'Personalized Nutrition Plan' }}</h3>
 
 <p>{{ $about3->description ?? 'Customized meal plans designed to support your health and fitness goals.' }}</p>
-
+</div>
 </div>
 </div>
 
