@@ -19,8 +19,8 @@ class IndexController extends Controller
     {
         $heroes = HeroSection::all();
         $about = About::first();
-        $about2 = About::find(3);
-        $about3 = About::find(4);
+        $about2 = About::find(4);
+        $about3 = About::find(3);
         $programs = Program::where('is_active', 1)->latest()->take(6)->get();
          $videoReviews = VideoReview::where('is_active',1)
                         ->latest()
