@@ -154,15 +154,15 @@ Tailored workout routines created to improve strength and overall fitness.
 <div class="row align-items-center">
 
 <div class="col-lg-6">
-<div class="about-content-item">
-
+<div class="about-content-two">
+<div class="section-title">
 <i class="flaticon-diet"></i>
 
-<span class="text-muted">Mentor • Director</span>
+<span >Mentor • Director</span>
 <h3>{{ $about2->title ?? 'Personalized Nutrition Plan' }}</h3>
 
 <p>{{ $about2->description ?? 'Customized meal plans designed to support your health and fitness goals.' }}</p>
-
+</div>
 </div>
 </div>
 
