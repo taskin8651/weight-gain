@@ -140,7 +140,7 @@ $settings = App\Models\Setting::first();
 
                                 <li class="nav-item">
                                     <a href="{{ route('video-reviews.page') }}" class="nav-link {{ request()->routeIs('video-reviews.page') ? 'active' : '' }}">
-                                        Customer Reviews
+                                        Student Reviews
                                     </a>
                                 
                                 </li>
