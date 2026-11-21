@@ -42,20 +42,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('diet-plans', App\Http\Controllers\Admin\DietPlanController::class);
     Route::resource('transformations', App\Http\Controllers\Admin\TransformationController::class);
 
-     Route::resource('appointments', App\Http\Controllers\Admin\AppointmentController::class)
-        ->only(['index','destroy']);
+    Route::resource('appointments', App\Http\Controllers\Admin\AppointmentController::class)
+    ->only(['index', 'show', 'update', 'destroy']);
 
-    Route::patch('appointments/{appointment}/approve',
-        [App\Http\Controllers\Admin\AppointmentController::class,'approve'])
-        ->name('appointments.approve');
+Route::patch('appointments/{appointment}/approve',
+    [App\Http\Controllers\Admin\AppointmentController::class, 'approve'])
+    ->name('appointments.approve');
 
-    Route::patch('appointments/{appointment}/reject',
-        [App\Http\Controllers\Admin\AppointmentController::class,'reject'])
-        ->name('appointments.reject');
-
-        Route::post('/appointment-book',
-    [App\Http\Controllers\User\AppointmentController::class,'store'])
-    ->name('user.appointment.store');
+Route::patch('appointments/{appointment}/reject',
+    [App\Http\Controllers\Admin\AppointmentController::class, 'reject'])
+    ->name('appointments.reject');
 
      Route::resource('services',
         App\Http\Controllers\Admin\ServiceController::class);
